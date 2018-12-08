@@ -18,12 +18,12 @@
         <mass>0.2</mass>
         <pose>0 0 0 0 0 0</pose>
         <inertia> <!-- TODO: Check what means -->
-          <ixx>0.000031066</ixx>
+          <ixx>0.07782818</ixx>
           <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>0.000032349</iyy>
+          <ixz>0.02385301</ixz>
+          <iyy>0.15005209</iyy>
           <iyz>0</iyz>
-          <izz>0.00036</izz>
+          <izz>0.17500393</izz>
         </inertia>
       </inertial>
       <collision name="chassis_collision">
