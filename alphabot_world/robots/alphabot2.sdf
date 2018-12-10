@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sdf version="1.6">
   <model name="alphabot2">
-    <pose>0 0 0.016 0 0 0</pose><!--Altura base ao chao-->
+    <pose>0 0 0.0205 0 0 0</pose><!--Centro do cilindro ao chao-->
     <plugin name="clock" filename="libgz_clock.so">
       <topic>/gazebo/frc/time</topic>
     </plugin>
     <link name="chassis">
       <gravity>1</gravity>
       <self_collide>0</self_collide>
-      <pose>0 0 0.205 0 0 0</pose>
+      <pose>0 0 0.0205 0 0 0</pose>
       <must_be_base_link>1</must_be_base_link>
       <velocity_decay>
         <linear>0</linear>
@@ -31,7 +31,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/main_body_mesh.STL</uri>
+            <uri>model://meshes/chassis.STL</uri>
           </mesh>
         </geometry>
         <!-- 
@@ -51,16 +51,20 @@
         </surface> -->
       </collision>
       <visual name="chassis_visual">
-        <pose>0.0708311922786808 0 -0.126939925664659 0 0 0</pose>
+        <pose>0 0 0.0375 0 0 0</pose>
         <material>
           <ambient>1 0 0 1</ambient>
           <diffuse>1 0 0 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
-          <cylinder>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/chassis.STL</uri>
+          </mesh>
+	  <!--<cylinder>
 	    <length>0.041</length>
 	    <radius>0.0545</radius>
-          </cylinder>
+          </cylinder>-->
         </geometry> 
       </visual>
 
@@ -83,7 +87,7 @@
 	<sensor name="camera_controller_top" type="camera">
 	  <visualize>0</visualize>
 	  <always_on>1</always_on>
-	  <pose>-0.079244135856401 0 0.562431407758936 0 -0.28 0</pose>
+	  <pose>0 0 0.0955 0 -0.28 0</pose>
 	  <camera name="chassiscameratop">
 		<horizontal_fov>1.08504</horizontal_fov>
 		<image>
@@ -114,7 +118,7 @@
     <link name="left_wheel">
       <gravity>1</gravity>
       <self_collide>0</self_collide>
-      <pose>0 -0.545 0.0205 0 1.5707 1.5707</pose>
+      <pose>0 -0.0545 0 0 1.5707 1.5707</pose>
       <must_be_base_link>0</must_be_base_link>
       <velocity_decay>
         <linear>0</linear>
@@ -122,7 +126,7 @@
       </velocity_decay>
       <inertial>
         <mass>0.045</mass>
-        <pose>0 -0.0085 0 0 0</pose><!--ponto de inercia no meio da roda-->
+        <pose>0 -0.0085 0 0 0 0</pose><!--ponto de inercia no meio da roda-->
         <inertia>
           <ixx>0.00000000136634</ixx>
           <ixy>0</ixy>
@@ -156,7 +160,7 @@
         </surface>
       </collision>
       <visual name="left_wheel_visual">
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 -0.0085 0 0 0 0</pose>
         <material>
           <ambient>1 0 0 1</ambient>
           <diffuse>1 0 0 1</diffuse>
@@ -173,7 +177,7 @@
     <joint name="chassis-left_wheel" type="revolute">
       <parent>chassis</parent>
       <child>left_wheel</child>
-      <pose>0 -0.0545 -0.0205 0 0 0</pose>
+      <pose>0 -0.0545 0 0 0 0</pose>
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
@@ -189,7 +193,7 @@
     <link name="right_wheel">
       <gravity>1</gravity>
       <self_collide>0</self_collide>
-      <pose>0 0.046 0.021 0 1.5707 1.5707</pose>
+      <pose>0 0.0545 0 0 1.5707 1.5707</pose>
       <must_be_base_link>0</must_be_base_link>
       <velocity_decay>
         <linear>0</linear>
@@ -231,7 +235,7 @@
         </surface>
       </collision>
       <visual name="right_wheel_visual">
-        <pose>0 -0.0545 -0.0205 0 0 0</pose>
+        <pose>0 0.0085 0 0 0 0</pose>
         <material>
           <ambient>1 0 0 1</ambient>
           <diffuse>1 0 0 1</diffuse>
@@ -248,7 +252,7 @@
     <joint name="chassis-right_wheel" type="revolute">
       <parent>chassis</parent>
       <child>right_wheel</child>
-      <pose>0 -0.0545 -0.0205 0 0 0</pose>
+      <pose>0 0.0545 0 0 0 0</pose>
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
