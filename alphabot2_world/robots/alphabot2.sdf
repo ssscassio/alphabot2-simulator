@@ -31,7 +31,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/chassis_col.STL</uri>
+            <uri>model://meshes/chassis.STL</uri>
           </mesh>
         </geometry>
         <!--
