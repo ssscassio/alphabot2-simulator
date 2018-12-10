@@ -92,7 +92,7 @@
     <model name='park'>
 			<static>1</static>
 			<link name='link_park'>
-        <!--<collision name='park'>
+        <collision name='park'>
           <geometry>
             <plane>
               <normal>0 0 1</normal>
@@ -112,7 +112,7 @@
             </contact>
           </surface>
           <max_contacts>10</max_contacts>
-        </collision>-->
+        </collision>
         <visual name='visual_park'>
           <cast_shadows>0</cast_shadows>
           <pose>3.4 -1.8 0.0001 0 0 3.1415</pose>
@@ -237,7 +237,7 @@
       </link>
     </model>
    
-    <!--<state world_name='default'>
+    <state world_name='default'>
       <sim_time>0 0</sim_time>
       <real_time>0 0</real_time>
       <wall_time>0 0</wall_time>
@@ -265,7 +265,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-    </state>-->
+    </state>
 		<gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>7.0849 -8.35309 6.00103 0 0.633798 2.42819</pose>
