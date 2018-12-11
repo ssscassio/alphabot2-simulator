@@ -282,7 +282,7 @@
     </sensor>
 	    
     <sensor type="gpu_ray" name="sensor1_top">
-      	<pose>0 0 0 0 0 0</pose>
+      	<pose>0.0469 -0.022 -0.0185 0 0 -0.418879020478639</pose>
       	<visualize>false</visualize>
       	<update_rate>30.0</update_rate>
      	 <ray>
@@ -315,7 +315,7 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor2_top">
-      	<pose>0 0 0 0 0 0</pose>
+      	<pose>0.0469 0.022 -0.0185 0 0 0.418879020478639</pose>
       	<visualize>false</visualize>
       	<update_rate>30.0</update_rate>
      	 <ray>
