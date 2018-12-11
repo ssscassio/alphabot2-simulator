@@ -52,8 +52,8 @@
       <visual name="chassis_visual">
         <pose>0 0 0.016 0 0 0</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
+          <diffuse>0 0 1 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
           <mesh>
@@ -65,7 +65,7 @@
       <visual name="camera_visual">
         <pose>0 0 0.057 0 0 0</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
           <diffuse>1 0 0 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
@@ -221,7 +221,7 @@
       <visual name="left_wheel_visual">
         <pose>0 -0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
           <diffuse>1 0 0 1</diffuse>
         </material>
         <geometry>
@@ -296,7 +296,7 @@
       <visual name="right_wheel_visual">
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
           <diffuse>1 0 0 1</diffuse>
         </material>
         <geometry>
