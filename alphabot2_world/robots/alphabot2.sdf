@@ -33,7 +33,7 @@
             <scale>1 1 1</scale>
             <uri>model://meshes/chassis.STL</uri>
           </mesh>
-        </geometry> 
+        </geometry>
 	<surface>
           <contact>
             <ode>
@@ -52,28 +52,28 @@
       <visual name="chassis_visual">
         <pose>0 0 0.016 0 0 0</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
+          <diffuse>0 0 1 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://meshes/chassis.STL</uri>
           </mesh>
-        </geometry> 
+        </geometry>
       </visual>
       <visual name="camera_visual">
         <pose>0 0 0.057 0 0 0</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://meshes/camera.stl</uri>
           </mesh>
-        </geometry> 
+        </geometry>
       </visual>
       <collision name="camera_collision">
         <pose>0 0 0.057 0 0 0</pose>
@@ -82,8 +82,8 @@
             <scale>1 1 1</scale>
             <uri>model://meshes/camera.stl</uri>
           </mesh>
-        </geometry> 
-      </collision>	
+        </geometry>
+      </collision>
 	<sensor name="camera_controller_top" type="camera">
 	  <visualize>0</visualize>
 	  <always_on>1</always_on>
@@ -106,7 +106,7 @@
 		<imageTopicName>image_raw</imageTopicName>
 		<cameraInfoTopicName>camera_info_top</cameraInfoTopicName>
 		<!--<frameName>camera_link_tracking</frameName>-->
-	  	<!--	
+	  	<!--
 		<k1>-0.275678598507515</k1>
 		<k2>0.045106260288961</k2>
 		<k3>0.0</k3>
@@ -114,6 +114,239 @@
 		<p2>0.001092737340199</p2>-->
 	   </plugin>
 	</sensor>
+	    
+       <sensor type="gpu_ray" name="sensor1_bottom">
+      	<pose>0.038 -0.028 -0.021 0 1.570796 0</pose>
+      	<visualize>false</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor1_bottom_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor1_bottom</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+    <sensor type="gpu_ray" name="sensor2_bottom">
+      	<pose>0.038 -0.014 -0.021 0 1.570796 0</pose>
+      	<visualize>false</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor2_bottom_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor2_bottom</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+    <sensor type="gpu_ray" name="sensor3_bottom">
+      	<pose>0.038 0 -0.021 0 1.570796 0</pose>
+      	<visualize>true</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor3_bottom_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor3_bottom</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+    <sensor type="gpu_ray" name="sensor4_bottom">
+      	<pose>0.038 0.014 -0.021 0 1.570796 0</pose>
+      	<visualize>false</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor4_bottom_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor4_bottom</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+    <sensor type="gpu_ray" name="sensor5_bottom">
+      	<pose>0.038 0.028 -0.021 0 1.570796 0</pose>
+      	<visualize>false</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor5_bottom_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor5_bottom</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+	    
+    <sensor type="gpu_ray" name="sensor1_top">
+      	<pose>0.0469 -0.022 -0.0185 0 0 -0.418879020478639</pose>
+      	<visualize>true</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor1_top_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor1_top</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
+    <sensor type="gpu_ray" name="sensor2_top">
+      	<pose>0.0469 0.022 -0.0185 0 0 0.418879020478639</pose>
+      	<visualize>false</visualize>
+      	<update_rate>30.0</update_rate>
+     	 <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor2_top_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>sensor2_top</topicName>
+        <!--<frameName>hokuyo_link</frameName>-->
+      </plugin>
+    </sensor>
 
           <collision name='caster_collision_front'>
             <pose>0.05 0 0.011 0 0 0</pose><!--confirmar-->
@@ -221,8 +454,8 @@
       <visual name="left_wheel_visual">
         <pose>0 -0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
         </material>
         <geometry>
           <cylinder>
@@ -232,7 +465,7 @@
         </geometry>
       </visual>
     </link>
-    
+
     <joint name="chassis-left_wheel" type="revolute">
       <parent>chassis</parent>
       <child>left_wheel</child>
@@ -248,7 +481,7 @@
         </limit>
       </axis>
     </joint>
-    
+
     <link name="right_wheel">
       <gravity>1</gravity>
       <self_collide>0</self_collide>
@@ -296,8 +529,8 @@
       <visual name="right_wheel_visual">
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <ambient>0.5 0.5 0.5 0.5</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
         </material>
         <geometry>
           <cylinder>
@@ -323,7 +556,7 @@
         </limit>
       </axis>
     </joint>
-    
+
 	<plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
 		<publishWheelTF>true</publishWheelTF>
 		<publishWheelJointState>false</publishWheelJointState>
