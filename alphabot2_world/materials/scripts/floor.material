@@ -11,7 +11,7 @@ material Floor/Image
 
       texture_unit
 			{
-				texture floor_resized.png
+				texture floor.png
 			}
     }
   }
