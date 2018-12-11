@@ -33,7 +33,7 @@
             <scale>1 1 1</scale>
             <uri>model://meshes/chassis.STL</uri>
           </mesh>
-        </geometry> 
+        </geometry>
 	<surface>
           <contact>
             <ode>
@@ -60,20 +60,20 @@
             <scale>1 1 1</scale>
             <uri>model://meshes/chassis.STL</uri>
           </mesh>
-        </geometry> 
+        </geometry>
       </visual>
       <visual name="camera_visual">
         <pose>0 0 0.057 0 0 0</pose>
         <material>
           <ambient>0.5 0.5 0.5 0.5</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
         </material>
         <geometry><!--Mudar para a visualização certa!-->
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://meshes/camera.stl</uri>
           </mesh>
-        </geometry> 
+        </geometry>
       </visual>
       <collision name="camera_collision">
         <pose>0 0 0.057 0 0 0</pose>
@@ -82,8 +82,8 @@
             <scale>1 1 1</scale>
             <uri>model://meshes/camera.STL</uri>
           </mesh>
-        </geometry> 
-      </collision>	
+        </geometry>
+      </collision>
 	<sensor name="camera_controller_top" type="camera">
 	  <visualize>0</visualize>
 	  <always_on>1</always_on>
@@ -106,7 +106,7 @@
 		<imageTopicName>image_raw</imageTopicName>
 		<cameraInfoTopicName>camera_info_top</cameraInfoTopicName>
 		<!--<frameName>camera_link_tracking</frameName>-->
-	  	<!--	
+	  	<!--
 		<k1>-0.275678598507515</k1>
 		<k2>0.045106260288961</k2>
 		<k3>0.0</k3>
@@ -222,7 +222,7 @@
         <pose>0 -0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
           <ambient>0.5 0.5 0.5 0.5</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
         </material>
         <geometry>
           <cylinder>
@@ -232,7 +232,7 @@
         </geometry>
       </visual>
     </link>
-    
+
     <joint name="chassis-left_wheel" type="revolute">
       <parent>chassis</parent>
       <child>left_wheel</child>
@@ -248,7 +248,7 @@
         </limit>
       </axis>
     </joint>
-    
+
     <link name="right_wheel">
       <gravity>1</gravity>
       <self_collide>0</self_collide>
@@ -297,7 +297,7 @@
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
           <ambient>0.5 0.5 0.5 0.5</ambient>
-          <diffuse>1 0 0 1</diffuse>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
         </material>
         <geometry>
           <cylinder>
@@ -323,7 +323,7 @@
         </limit>
       </axis>
     </joint>
-    
+
 	<plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
 		<publishWheelTF>true</publishWheelTF>
 		<publishWheelJointState>false</publishWheelJointState>
