@@ -182,7 +182,7 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor3_bottom">
-      	<pose>0.038 0 -0.0205 0 1.570796 0</pose>
+      	<pose>0.038 0 -0.021 0 1.570796 0</pose>
       	<visualize>false</visualize>
       	<update_rate>30.0</update_rate>
      	 <ray>
