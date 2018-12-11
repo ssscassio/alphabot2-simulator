@@ -124,7 +124,7 @@
           <horizontal>
             <samples>200</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
+            <min_angle>1.570796</min_angle>
             <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
@@ -157,7 +157,7 @@
           <horizontal>
             <samples>200</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
+            <min_angle>1.570796</min_angle>
             <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
@@ -190,7 +190,7 @@
           <horizontal>
             <samples>200</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
+            <min_angle>1.570796</min_angle>
             <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
@@ -223,7 +223,7 @@
           <horizontal>
             <samples>200</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
+            <min_angle>1.570796</min_angle>
             <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
@@ -256,7 +256,7 @@
           <horizontal>
             <samples>200</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
+            <min_angle>1.570796</min_angle>
             <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
