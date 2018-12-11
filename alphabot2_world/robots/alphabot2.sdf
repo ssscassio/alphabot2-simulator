@@ -183,7 +183,7 @@
     </sensor>
     <sensor type="gpu_ray" name="sensor3_bottom">
       	<pose>0.038 0 -0.021 0 1.570796 0</pose>
-      	<visualize>false</visualize>
+      	<visualize>true</visualize>
       	<update_rate>30.0</update_rate>
      	 <ray>
         <scan>
@@ -283,7 +283,7 @@
 	    
     <sensor type="gpu_ray" name="sensor1_top">
       	<pose>0.0469 -0.022 -0.0185 0 0 -0.418879020478639</pose>
-      	<visualize>false</visualize>
+      	<visualize>true</visualize>
       	<update_rate>30.0</update_rate>
      	 <ray>
         <scan>
@@ -455,7 +455,7 @@
         <pose>0 -0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
           <ambient>0.5 0.5 0.5 0.5</ambient>
-          <diffuse>0.3 0.3 0.3 1</diffuse>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
         </material>
         <geometry>
           <cylinder>
@@ -530,7 +530,7 @@
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <material>
           <ambient>0.5 0.5 0.5 0.5</ambient>
-          <diffuse>0.3 0.3 0.3 1</diffuse>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
         </material>
         <geometry>
           <cylinder>
