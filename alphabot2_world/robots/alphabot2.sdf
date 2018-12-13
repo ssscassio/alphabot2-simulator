@@ -568,7 +568,7 @@
     <robotNamespace>/baseCamera</robotNamespace>
   </plugin>
 
-    <joint name="chassis-camera" type="revolute">
+    <joint name="chassis-lower_camera" type="revolute">
       <parent>chassis</parent>
       <child>lower_camera_link</child> 
       <pose>0 0 0.057 0 0 0</pose>
@@ -681,7 +681,10 @@
         </limit>
       </axis>
     </joint>
-
+ <!--top of camera-->
+  <plugin name="upper_camera_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/topCamera</robotNamespace>
+  </plugin>
 
 	<plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
 		<publishWheelTF>true</publishWheelTF>
