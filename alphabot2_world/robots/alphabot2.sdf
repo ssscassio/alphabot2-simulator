@@ -18,7 +18,7 @@
         <mass>0.145</mass>
         <pose>0 0 0.0205 0 0 0</pose><!--0.0000181121 acima do centro do cilindro-->
         <inertia>
-	        <ixx>0.00000029334</ixx>
+          <ixx>0.00000029334</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
           <iyy>0.00000029334</iyy>
@@ -34,7 +34,7 @@
             <uri>model://meshes/chassis.stl</uri>
           </mesh>
         </geometry>
-	      <surface>
+        <surface>
           <contact>
             <ode>
               <kp>50000</kp>
@@ -64,10 +64,10 @@
       </visual>
       
        <sensor type="gpu_ray" name="sensor1_bottom">
-      	<pose>0.038 -0.028 -0.021 0 1.570796 0</pose>
-      	<visualize>false</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.038 -0.028 -0.021 0 1.570796 0</pose>
+        <visualize>false</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -97,10 +97,10 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor2_bottom">
-      	<pose>0.038 -0.014 -0.021 0 1.570796 0</pose>
-      	<visualize>false</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.038 -0.014 -0.021 0 1.570796 0</pose>
+        <visualize>false</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -130,10 +130,10 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor3_bottom">
-      	<pose>0.038 0 -0.021 0 1.570796 0</pose>
-      	<visualize>true</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.038 0 -0.021 0 1.570796 0</pose>
+        <visualize>true</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -163,10 +163,10 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor4_bottom">
-      	<pose>0.038 0.014 -0.021 0 1.570796 0</pose>
-      	<visualize>false</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.038 0.014 -0.021 0 1.570796 0</pose>
+        <visualize>false</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -196,10 +196,10 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor5_bottom">
-      	<pose>0.038 0.028 -0.021 0 1.570796 0</pose>
-      	<visualize>false</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.038 0.028 -0.021 0 1.570796 0</pose>
+        <visualize>false</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -228,12 +228,12 @@
         <!--<frameName>hokuyo_link</frameName>-->
       </plugin>
     </sensor>
-	    
+      
     <sensor type="gpu_ray" name="sensor1_top">
-      	<pose>0.0469 -0.022 -0.0185 0 0 -0.418879020478639</pose>
-      	<visualize>true</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.0469 -0.022 -0.0185 0 0 -0.418879020478639</pose>
+        <visualize>true</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -263,10 +263,10 @@
       </plugin>
     </sensor>
     <sensor type="gpu_ray" name="sensor2_top">
-      	<pose>0.0469 0.022 -0.0185 0 0 0.418879020478639</pose>
-      	<visualize>false</visualize>
-      	<update_rate>30.0</update_rate>
-     	 <ray>
+        <pose>0.0469 0.022 -0.0185 0 0 0.418879020478639</pose>
+        <visualize>false</visualize>
+        <update_rate>30.0</update_rate>
+        <ray>
         <scan>
           <horizontal>
             <samples>200</samples>
@@ -325,7 +325,7 @@
             </geometry>
           </visual>
 
-	<collision name='caster_collision_back'>
+  <collision name='caster_collision_back'>
             <pose>-0.05 0 0.011 0 0 0</pose><!--confirmar-->
             <geometry>
                 <sphere>
@@ -382,8 +382,8 @@
         <pose>0 -0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <geometry>
           <cylinder>
-	    <length>0.017</length>
-	    <radius>0.0205</radius>
+      <length>0.017</length>
+      <radius>0.0205</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -409,8 +409,8 @@
         </material>
         <geometry>
           <cylinder>
-	    <length>0.017</length>
-	    <radius>0.0205</radius>
+      <length>0.017</length>
+      <radius>0.0205</radius>
           </cylinder>
         </geometry>
       </visual>
@@ -457,8 +457,8 @@
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <geometry>
           <cylinder>
-	    <length>0.017</length>
-	    <radius>0.021</radius>
+      <length>0.017</length>
+      <radius>0.021</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -484,8 +484,8 @@
         </material>
         <geometry>
           <cylinder>
-	    <length>0.017</length>
-	    <radius>0.021</radius>
+      <length>0.017</length>
+      <radius>0.021</radius>
           </cylinder>
         </geometry>
       </visual>
@@ -639,35 +639,35 @@
         </geometry>
       </visual>
       <sensor name="camera_controller_top" type="camera">
-	      <visualize>0</visualize>
-	      <always_on>1</always_on>
-	      <pose>0 0 0.122 0 -0.28 0</pose>
-	      <camera name="chassiscameratop">
-		      <horizontal_fov>1.08504</horizontal_fov>
-		      <image>
-		        <width>2552</width>
+        <visualize>0</visualize>
+        <always_on>1</always_on>
+        <pose>0 0 0.122 0 -0.28 0</pose>
+        <camera name="chassiscameratop">
+          <horizontal_fov>1.08504</horizontal_fov>
+          <image>
+            <width>2552</width>
             <height>1944</height>
-		      </image>
-		      <clip>
-		       <near>0.01</near>
-		       <far>1000</far>
-		      </clip>
-	      </camera>
-	      <plugin name="camera_controller_tracking_top" filename="libgazebo_ros_camera.so">
-		      <alwaysOn>true</alwaysOn>
-		      <updateRate>30.0</updateRate>
-		      <cameraName>conde_camera_signalling_panel/</cameraName>
-		      <imageTopicName>image_raw</imageTopicName>
-		      <cameraInfoTopicName>camera_info_top</cameraInfoTopicName>
-		      <!--<frameName>camera_link_tracking</frameName>-->
-	  	    <!--
-		      <k1>-0.275678598507515</k1>
-		      <k2>0.045106260288961</k2>
-		      <k3>0.0</k3>
-		      <p1>0.004883645512607</p1>
-		      <p2>0.001092737340199</p2>-->
-	      </plugin>
-	    </sensor>
+          </image>
+          <clip>
+           <near>0.01</near>
+           <far>1000</far>
+          </clip>
+        </camera>
+        <plugin name="camera_controller_tracking_top" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <cameraName>conde_camera_signalling_panel/</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info_top</cameraInfoTopicName>
+          <!--<frameName>camera_link_tracking</frameName>-->
+          <!--
+          <k1>-0.275678598507515</k1>
+          <k2>0.045106260288961</k2>
+          <k3>0.0</k3>
+          <p1>0.004883645512607</p1>
+          <p2>0.001092737340199</p2>-->
+        </plugin>
+      </sensor>
     </link>
     <joint name="lower_camera-upper_camera" type="revolute">
       <parent>lower_camera_link</parent>
@@ -686,25 +686,25 @@
     <robotNamespace>/topCamera</robotNamespace>
   </plugin>
 
-	<plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
-		<publishWheelTF>true</publishWheelTF>
-		<publishWheelJointState>false</publishWheelJointState>
-		<alwaysOn>true</alwaysOn>
-		<updateRate>50</updateRate>
-		<rightJoint>chassis-right_wheel</rightJoint>
-		<leftJoint>chassis-left_wheel</leftJoint>
-		<wheelSeparation>0.3708</wheelSeparation>
-		<wheelDiameter>0.051522</wheelDiameter>
-		<wheelTorque>7.5</wheelTorque>
-		<commandTopic>cmd_vel</commandTopic>
-		<odometryTopic>odom</odometryTopic>
-		<odometryFrame>odom</odometryFrame>
-		<robotBaseFrame>base_footprint</robotBaseFrame>
-		<robotNamespace>/</robotNamespace>
-		<legacyMode>false</legacyMode>
-  	<rosDebugLevel>na</rosDebugLevel>
-		<wheelAcceleration>0</wheelAcceleration>
-		<publishTf>0</publishTf>
-	</plugin>
+  <plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
+    <publishWheelTF>true</publishWheelTF>
+    <publishWheelJointState>false</publishWheelJointState>
+    <alwaysOn>true</alwaysOn>
+    <updateRate>50</updateRate>
+    <rightJoint>chassis-right_wheel</rightJoint>
+    <leftJoint>chassis-left_wheel</leftJoint>
+    <wheelSeparation>0.3708</wheelSeparation>
+    <wheelDiameter>0.051522</wheelDiameter>
+    <wheelTorque>7.5</wheelTorque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+    <robotNamespace>/</robotNamespace>
+    <legacyMode>false</legacyMode>
+    <rosDebugLevel>na</rosDebugLevel>
+    <wheelAcceleration>0</wheelAcceleration>
+    <publishTf>0</publishTf>
+  </plugin>
   </model>
 </sdf>
