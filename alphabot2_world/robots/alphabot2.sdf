@@ -61,8 +61,7 @@
             <uri>model://meshes/chassis.stl</uri>
           </mesh>
         </geometry>
-      </visual>
-      
+      </visual>      
        <sensor type="gpu_ray" name="sensor1_bottom">
         <pose>0.038 -0.028 -0.021 0 1.570796 0</pose>
         <visualize>false</visualize>
@@ -368,7 +367,7 @@
       </velocity_decay>
       <inertial>
         <mass>0.045</mass>
-        <pose>0 0 0 0 0 0</pose><!--ponto de inercia no meio da roda-->
+        <pose>0 -0.0539 0.0365 0 0 0</pose><!--ponto de inercia no meio da roda-->
         <inertia>
           <ixx>0.00000000136634</ixx>
           <ixy>0</ixy>
@@ -443,22 +442,22 @@
       </velocity_decay>
       <inertial>
         <mass>0.045</mass>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 0.0539 0.0365 0 0 0</pose>
         <inertia>
-          <ixx>0.00001638</ixx>
+          <ixx>0.00000000136634</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00002654</iyy>
+          <iyy>0.000000000136634</iyy>
           <iyz>0</iyz>
-          <izz>0.00001638</izz>
+          <izz>0.00000945563</izz>
         </inertia>
       </inertial>
       <collision name="right_wheel_collision">
         <pose>0 0.0539 0.0365 0 1.57079633 1.57079633</pose>
         <geometry>
           <cylinder>
-      <length>0.017</length>
-      <radius>0.021</radius>
+	    <length>0.017</length>
+	    <radius>0.0205</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -484,8 +483,8 @@
         </material>
         <geometry>
           <cylinder>
-      <length>0.017</length>
-      <radius>0.021</radius>
+	    <length>0.017</length>
+	    <radius>0.0205</radius>
           </cylinder>
         </geometry>
       </visual>
@@ -687,24 +686,24 @@
   </plugin>
 
   <plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
-    <publishWheelTF>true</publishWheelTF>
-    <publishWheelJointState>false</publishWheelJointState>
-    <alwaysOn>true</alwaysOn>
-    <updateRate>50</updateRate>
-    <rightJoint>chassis-right_wheel</rightJoint>
-    <leftJoint>chassis-left_wheel</leftJoint>
-    <wheelSeparation>0.3708</wheelSeparation>
-    <wheelDiameter>0.051522</wheelDiameter>
-    <wheelTorque>7.5</wheelTorque>
-    <commandTopic>cmd_vel</commandTopic>
-    <odometryTopic>odom</odometryTopic>
-    <odometryFrame>odom</odometryFrame>
-    <robotBaseFrame>base_footprint</robotBaseFrame>
-    <robotNamespace>/</robotNamespace>
-    <legacyMode>false</legacyMode>
-    <rosDebugLevel>na</rosDebugLevel>
-    <wheelAcceleration>0</wheelAcceleration>
-    <publishTf>0</publishTf>
-  </plugin>
+		<publishWheelTF>true</publishWheelTF>
+		<publishWheelJointState>false</publishWheelJointState>
+		<alwaysOn>true</alwaysOn>
+		<updateRate>50</updateRate>
+		<rightJoint>chassis-right_wheel</rightJoint>
+		<leftJoint>chassis-left_wheel</leftJoint>
+		<wheelSeparation>0.092</wheelSeparation>
+		<wheelDiameter>0.041</wheelDiameter>
+		<wheelTorque>7.5</wheelTorque>
+		<commandTopic>cmd_vel</commandTopic>
+		<odometryTopic>odom</odometryTopic>
+		<odometryFrame>odom</odometryFrame>
+		<robotBaseFrame>base_footprint</robotBaseFrame>
+		<robotNamespace>/</robotNamespace>
+		<legacyMode>false</legacyMode>
+  	<rosDebugLevel>na</rosDebugLevel>
+		<wheelAcceleration>0</wheelAcceleration>
+		<publishTf>0</publishTf>
+	</plugin>
   </model>
 </sdf>

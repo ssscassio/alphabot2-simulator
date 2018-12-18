@@ -3,12 +3,12 @@
 
   <arg name="x" default="2.22"/>
   <arg name="y" default="-0.5"/>
-  <arg name="z" default="0.01"/>
+  <arg name="z" default="0.2"/>
   <node 
     name="spawn_urdf" 
     pkg="gazebo_ros" 
     type="spawn_model" 
-    args="-file $(find alphabot2_world)/robots/alphabot2.sdf 
+    args="-file $(find alphabot2_world)/robots/alphabot2.sdf
       -x $(arg x) -y $(arg y) -z $(arg z)
       -R 0
       -P 0
