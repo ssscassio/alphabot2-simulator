@@ -54,9 +54,9 @@
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0225"/>
       <geometry>
-        <cylinder radius="0.055" length="0.045"/>
+        <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
@@ -64,7 +64,7 @@
     
     <!-- caster front collision and visual -->
     <collision name="caster_front_collision">
-      <origin rpy="0 0 0" xyz="0.05 0 -0.0335"/>
+      <origin rpy="0 0 0" xyz="0.05 0 -0.03"/>
       <geometry>
         <sphere radius="0.005"/>
       </geometry>
@@ -80,7 +80,7 @@
       </surface>
     </collision>
     <visual name="caster_front_visual">
-      <origin rpy="0 0 0" xyz="0.05 0 -0.0325"/>
+      <origin rpy="0 0 0" xyz="0.05 0 -0.03"/>
       <geometry>
         <sphere radius="0.005"/>
       </geometry>
@@ -90,7 +90,7 @@
 
     <!-- caster back collision and visual -->
     <collision name="caster_back_collision">
-      <origin rpy="0 0 0" xyz="-0.05 0 -0.0325"/>
+      <origin rpy="0 0 0" xyz="-0.05 0 -0.03"/>
       <geometry>
         <sphere radius="0.005"/>
       </geometry>
@@ -106,7 +106,7 @@
       </surface>
     </collision>
     <visual name="caster_back_visual">
-      <origin rpy="0 0 0" xyz="-0.05 0 -0.0335"/>
+      <origin rpy="0 0 0" xyz="-0.05 0 -0.03"/>
       <geometry>
         <sphere radius="0.005"/>
       </geometry>
