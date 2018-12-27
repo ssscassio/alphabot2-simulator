@@ -120,12 +120,12 @@ int main(int argc, char** argv)
     dist_angle_pub = nh.advertise<std_msgs::Float64MultiArray>("/alphabot2_dist_angle", 1);
     crossWalk_pub = nh.advertise<std_msgs::Bool>("/crossWalk", 1);
 
-    ros::spin();
-    //    ros::Rate r(100);
-    //    while(ros::ok())
-    //    {
-    //        ros::spinOnce();
-    //        r.sleep();
-    //    }
+        ros::Rate r(100);
+        while(ros::ok())
+        {
+           ros::spinOnce();
+            r.sleep();
+        }
+        
     cv::destroyWindow("view");
 }

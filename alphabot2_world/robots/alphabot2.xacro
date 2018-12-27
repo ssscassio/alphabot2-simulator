@@ -86,51 +86,54 @@
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
   </joint>
-  <!--TODO: plugin link da câmara de baixo-->
+  <!--TODO: plugin link da camara de baixo-->
   <link name="upper_camera_link">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
   <inertial>
       <mass value="0.0225"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0 "/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0.000006" iyz="0" izz="0.000005"/>
   </inertial>
   <collision name="upper_camera_collision">
-      <origin rpy="0 0 0" xyz="0 0 0" />
+      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0" />
       <geometry>
         <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
       </geometry>
   </collision>
-  <visual name="lower_camera_link_visual">
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+  <visual name="upper_camera_visual">
+      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://alphabot2_world/meshes/camera.stl" />
       </geometry>      
-      <material name="orange"/>
+      <material name="blue"/>
   </visual>
   </link>
 
    <joint name="joint_upper_camera_link" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0 0.045"/>
+    <origin rpy="0 ${-3.14/2} 0" xyz="0 0 0.045"/>
     <child link="upper_camera_link" />
     <parent link="lower_camera_link"/>
-    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
   </joint>
 
   <!-- camera -->
-  <gazebo reference="camera_link">
-    <sensor type="camera" name="camera">
+  <gazebo reference="upper_camera_link">
+    <sensor name="alphabot2_camera" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
       <update_rate>30.0</update_rate>
-      <camera name="head">
-      <save enabled="true">
-              <path>/tmp/</path>
-            </save>
-
+      <camera name="alphabot2_camera">
+      <origin rpy="0 ${3.14/2} 0" xyz="0.015 0 0.045"/>
+        <save enabled="true">
+          <path>/tmp/</path>
+        </save>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>2552</width>
-          <height>1944</height>
-          <!--format>R8G8B8</format-->
+          <width>160</width>
+          <height>120</height>
+          <format>R8G8B8</format>
         </image>
         <clip>
           <near>0.01</near>
@@ -147,8 +150,8 @@
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
-        <cameraName>alphabot2/camera</cameraName>
+        <updateRate>30.0</updateRate>
+        <cameraName>alphabot2_camera/</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_link</frameName>
@@ -161,23 +164,6 @@
       </plugin>
     </sensor>
   </gazebo>
-
-
-  <!-- Diferential Control -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>20</updateRate>
-      <leftJoint>joint_left_wheel</leftJoint>
-      <rightJoint>joint_right_wheel</rightJoint>
-      <wheelSeparation>0.4</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
-      <torque>0.1</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>link_chassis</robotBaseFrame>
-    </plugin>
-  </gazebo>
-  
 </robot>
+
+ 
