@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <param name="robot_description" command="cat '$(find alphabot2_world)/robots/alphabot2.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find alphabot2_world)/robots/alphabot2.xacro'" />
  
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>

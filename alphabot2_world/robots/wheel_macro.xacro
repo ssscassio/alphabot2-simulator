@@ -31,7 +31,7 @@
   <xacro:macro name="joint_wheel" params="name child origin_xyz">
     <joint name="${name}" type="continuous">
       <origin rpy="0 0 0" xyz="${origin_xyz}"/>
-      <child link="${name}"/>
+      <child link="${child}"/>
       <parent link="link_chassis"/>
       <axis rpy="0 0 0" xyz="0 1 0"/>
       <limit effort="10000" velocity="1000"/>
