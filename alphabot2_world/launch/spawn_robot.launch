@@ -7,6 +7,6 @@
     <arg name="z" default="0.5"/>
  
     <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-          args="-urdf -param robot_description -model m2wr -x $(arg x) -y $(arg y) -z $(arg z)" />
+          args="-urdf -param robot_description -model alphabot2 -x $(arg x) -y $(arg y) -z $(arg z)" />
  
 </launch>
