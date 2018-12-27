@@ -1,19 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
-
-  <arg name="x" default="2.22"/>
-  <arg name="y" default="-0.5"/>
-  <arg name="z" default="0.2"/>
-  <node 
-    name="spawn_urdf" 
-    pkg="gazebo_ros" 
-    type="spawn_model" 
-    args="-file $(find alphabot2_world)/robots/alphabot2.sdf
-      -x $(arg x) -y $(arg y) -z $(arg z)
-      -R 0
-      -P 0
-      -Y 1.57
-      -sdf 
-      -model alphabot2"/>
-
+    <param name="robot_description" command="cat '$(find alphabot2_world)/robots/alphabot2.xacro'" />
+ 
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+ 
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model m2wr -x $(arg x) -y $(arg y) -z $(arg z)" />
+ 
 </launch>
