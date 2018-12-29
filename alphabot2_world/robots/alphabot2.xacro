@@ -58,7 +58,7 @@
   <xacro:joint_wheel name="joint_left_wheel"   child="link_left_wheel"   origin_xyz="0 -0.046 -0.016"  />
   <!-- end of joint for left wheel -->
 
-  <link name="lower_camera_link">
+  <!--<link name="lower_camera_link">
   <inertial>
       <mass value="0.0225"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -85,9 +85,9 @@
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
-  </joint>
+  </joint>-->
   <!--TODO: plugin link da camara de baixo-->
-  <link name="upper_camera_link">
+  <!--<link name="upper_camera_link">
     <origin rpy="0 0 0" xyz="0 0 0"/>
   <inertial>
       <mass value="0.0225"/>
@@ -116,10 +116,10 @@
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
-  </joint>
+  </joint>-->
 
   <!-- camera -->
-  <gazebo reference="upper_camera_link">
+  <!--<gazebo reference="upper_camera_link">
     <sensor name="alphabot2_camera" type="camera" >
       <visualize>1</visualize>
       <always_on>1</always_on>
@@ -141,9 +141,6 @@
         </clip>
         <noise>
           <type>gaussian</type>
-          <!-- Noise is sampled independently per pixel on each frame.
-               That pixel's noise value is added to each of its color
-               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>
@@ -163,7 +160,435 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
+  </gazebo>-->
+
+  <joint name="sensor1_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.038 -0.028 -0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor1_bottom"/>
+  </joint>
+
+  <link name="sensor1_bottom">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor1_bottom">
+    <sensor type="ray" name="head_sensor1">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>-1.5707963268</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>0.20</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor1_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor1</topicName>
+        <frameName>sensor1_bottom</frameName>
+      </plugin>
+    </sensor>
   </gazebo>
+
+  <joint name="sensor2_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.038  -0.014 -0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor2_bottom"/>
+  </joint>
+
+  <link name="sensor2_bottom">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor2_bottom">
+    <sensor type="ray" name="head_sensor2">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>-1.5707963268</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>0.20</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor2_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor2</topicName>
+        <frameName>sensor2_bottom</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint name="sensor3_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.038 0 -0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor3_bottom"/>
+  </joint>
+
+  <link name="sensor3_bottom">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor3_bottom">
+    <sensor type="ray" name="head_sensor3">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>-1.5707963268</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>0.20</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor3_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor3</topicName>
+        <frameName>sensor3_bottom</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint name="sensor4_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.038 0.014 -0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor4_bottom"/>
+  </joint>
+
+  <link name="sensor4_bottom">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor4_bottom">
+    <sensor type="ray" name="head_sensor4">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>-1.5707963268</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>0.20</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor4_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor4</topicName>
+        <frameName>sensor4_bottom</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint name="sensor5_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.038 0.028 -0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor5_bottom"/>
+  </joint>
+
+  <link name="sensor5_bottom">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor5_bottom">
+    <sensor type="ray" name="head_sensor5">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>-1.5707963268</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>0.20</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor5_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor5</topicName>
+        <frameName>sensor5_bottom</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint name="sensor1_top_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.0469 -0.022 0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor1_top"/>
+  </joint>
+
+  <link name="sensor1_top">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor1_top">
+    <sensor type="ray" name="head_sensor6">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>1.5707963268</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>3.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor1_top_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor1_top</topicName>
+        <frameName>sensor1_top</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint name="sensor2_top_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.0469 0.022 0.0242" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor2_top"/>
+  </joint>
+
+  <link name="sensor2_top">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.005 0.006 0.0065"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="sensor2_top">
+    <sensor type="ray" name="head_sensor7">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707963268</min_angle>
+            <max_angle>1.5707963268</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.0010</min>
+          <max>3.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="sensor2_top_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/alphabot2/laser/scan/sensor2_top</topicName>
+        <frameName>sensor2_top</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 </robot>
 
  
