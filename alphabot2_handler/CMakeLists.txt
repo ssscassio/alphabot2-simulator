@@ -9,8 +9,12 @@ project(alphabot2_handler)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  gazebo_msgs
-  geometry_msgs
+  roscpp
+  std_msgs
+  cv_bridge
+  sensor_msgs
+  image_transport
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -68,10 +72,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   std_msgs  # Or other packages containing msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,8 +108,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES alphabot2_control
-#  CATKIN_DEPENDS rospy
+#  LIBRARIES alphabot2_handler
+  CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
@@ -133,12 +137,12 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/alphabot2_control_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/alphabot2_handler_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
-## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
+## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"s
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
 
 ## Add cmake target dependencies of the executable
@@ -190,7 +194,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_alphabot2_control.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_alphabot2_handler.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
