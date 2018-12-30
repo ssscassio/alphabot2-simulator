@@ -30,21 +30,17 @@ class camera_node:
     def callback(self, data):
         try:
             """ Convert the raw image to OpenCV format """
-            cv_image = self.bridge.imgmsg_to_cv(data, "bgr8")
+            cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError, e:
           print e
   
         
         """ Get the width and height of the image """
-        (width, height) = cv.GetSize(cv_image)
+        width, height, channels = cv_image.shape
 
-        """ Overlay some text onto the image display """
-        text_font = cv.InitFont(cv.CV_FONT_HERSHEY_DUPLEX, 2, 2)
-        cv.PutText(cv_image, "OpenCV Image", (50, height / 2), text_font, cv.RGB(255, 255, 0))
-  
         """ Refresh the image on the screen """
-        cv.ShowImage(self.cv_window_name, cv_image)
-        cv.WaitKey(3)
+        cv.imshow(self.cv_window_name, cv_image)
+        cv.waitKey(3)
     
 def main(args):
       vn = camera_node()
@@ -52,7 +48,7 @@ def main(args):
         rospy.spin()
       except KeyboardInterrupt:
         print "Shutting down vison node."
-      cv.DestroyAllWindows()
+      cv.destroyAllWindows()
 
 if __name__ == '__main__':
     main(sys.argv)
