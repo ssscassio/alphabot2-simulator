@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="alphabot2_simulation" type="alphabot2_simulation_node" name="alphabot2_simulation_node" ns="alphabot2_simulation" output="screen">
+  </node>
+</launch>
