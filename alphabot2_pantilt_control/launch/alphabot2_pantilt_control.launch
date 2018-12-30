@@ -1,0 +1,16 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file (with the PID control parameters) to parameter server -->
+  <rosparam file="$(find alphabot2_pantilt_control)/config/alphabot2_pantilt_control.yaml" command="load"/>
+
+  <!-- load the controllers for the two joints-->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/alphabot2" args="joint_state_controller joint_lower_camera_position_controller joint_upper_camera_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/alphabot2/joint_states" />
+  </node>
+
+</launch>

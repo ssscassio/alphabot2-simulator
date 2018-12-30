@@ -1,5 +1,5 @@
 <launch>
-  <node pkg="alphabot2_tracking" type="alphabot2_tracking_node" name="alphabot2_tracking_node" ns="alphabot2_tracking" output="screen">
+  <node pkg="alphabot2_tracking" type="alphabot2_tracking_node" name="alphabot2_tracking_node" ns="alphabot2_tracking" output="screen" launch-prefix="xterm -e">
     <param name="camera" value="/alphabot2_camera/image_raw" />
   </node>
 </launch>
