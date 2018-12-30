@@ -78,7 +78,7 @@
       <material name="red"/>
     </visual>
   </link>
-  <joint name="joint_lower_camera" type="continuous"><!--AQUI USAM REVOLUTE https://answers.ros.org/question/142366/simulating-a-camera-with-a-pan-tilt-unit/-->
+  <joint name="joint_lower_camera_link" type="continuous"><!--AQUI USAM REVOLUTE https://answers.ros.org/question/142366/simulating-a-camera-with-a-pan-tilt-unit/-->
     <origin rpy="0 0 0" xyz="0 0 0.045"/>
     <child link="lower_camera_link" />
     <parent link="link_chassis"/>
@@ -86,7 +86,7 @@
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
   </joint>
-  <!--gazebo reference="lower_camera_link">
+  <gazebo reference="lower_camera_link">
         <material>Gazebo/Yellow</material>
   </gazebo>
   <transmission name="pan_trans">
@@ -97,7 +97,7 @@
     <actuator name="camera_pan_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission-->
+  </transmission>
 
   
   <!--TODO: plugin link da camara de baixo-->
@@ -122,7 +122,7 @@
       <material name="blue"/>
     </visual>
   </link>
-  <joint name="joint_upper_camera" type="continuous">
+  <joint name="joint_upper_camera_link" type="continuous">
     <origin rpy="0 ${-3.14/2} 0" xyz="0 0 0.045"/> <!--0.045-->
     <child link="upper_camera_link" />
     <parent link="lower_camera_link"/>
@@ -130,37 +130,28 @@
     <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
     <joint_properties damping="1.0" friction="1.0" />
   </joint>
-  <!--gazebo reference="upper_camera_link">
+  <gazebo reference="upper_camera_link">
         <material>Gazebo/Yellow</material>
   </gazebo>
   <transmission name="tilt_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint_upper_camera">
+    <joint name="joint_upper_camera_link">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="camera_tilt_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission-->
+  </transmission>
   
   <!--For all the transmission tags-->
-  <!--gazebo>
+  <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/alphabot2</robotNamespace>
     </plugin>
-  </gazebo-->
+  </gazebo>
 
   <!-- camera -->
-  <joint name="joint_camera" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.08"/>
-    <child link="camera_link" />
-    <parent link="upper_camera_link"/>
-    <limit effort="10000" velocity="1000"/>
-    <joint_properties damping="1.0" friction="1.0" />
-  </joint>
-  <link name="camera_link">
-  </link>
-  <gazebo reference="camera_link">
+  <gazebo reference="upper_camera_link">
     <sensor name="alphabot2_camera" type="camera" >
       <visualize>1</visualize>
       <always_on>1</always_on>
@@ -177,7 +168,7 @@
           <format>R8G8B8</format>
         </image>
         <clip>
-          <near>7</near>
+          <near>0.01</near>
           <far>1000</far>
         </clip>
         <noise>
