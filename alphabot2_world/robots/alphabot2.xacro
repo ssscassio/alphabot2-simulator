@@ -78,6 +78,7 @@
       <material name="red"/>
     </visual>
   </link>
+  
   <joint name="joint_lower_camera_link" type="continuous"><!--AQUI USAM REVOLUTE https://answers.ros.org/question/142366/simulating-a-camera-with-a-pan-tilt-unit/-->
     <origin rpy="0 0 0" xyz="0 0 0.045"/>
     <child link="lower_camera_link" />
@@ -89,9 +90,10 @@
   <gazebo reference="lower_camera_link">
         <material>Gazebo/Yellow</material>
   </gazebo>
+  
   <transmission name="pan_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint_lower_camera">
+    <joint name="joint_lower_camera_link">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="camera_pan_motor">
@@ -133,6 +135,7 @@
   <gazebo reference="upper_camera_link">
         <material>Gazebo/Yellow</material>
   </gazebo>
+  
   <transmission name="tilt_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_upper_camera_link">
