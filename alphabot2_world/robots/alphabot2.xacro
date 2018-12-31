@@ -86,11 +86,13 @@
     <parent link="link_chassis"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="90" velocity="1.396" lower="-1.57" upper="1.57"/>
-    <dynamics dampling="2" friction="1"/>
+    <dynamics dampling="0" friction="0"/>
   </joint>
   
   <gazebo reference="lower_camera_link">
         <material>Gazebo/Yellow</material>
+        <selfCollide>true</selfCollide>
+        <turnGravityOff>true</turnGravityOff>
   </gazebo>
   
   <transmission name="pan_trans">
@@ -130,6 +132,8 @@
   
   <gazebo reference="upper_camera_link">
         <material>Gazebo/Yellow</material>
+        <selfCollide>true</selfCollide>
+        <turnGravityOff>true</turnGravityOff>
   </gazebo>
   
   <joint name="joint_upper_camera_link" type="revolute">
@@ -138,7 +142,7 @@
     <parent link="lower_camera_link"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="90" velocity="1.396" lower="-1.57" upper="1.57"/>
-    <dynamics dampling="2" friction="1"/>
+    <dynamics dampling="0" friction="0"/>
   </joint>
 
   <transmission name="tilt_trans">
