@@ -140,7 +140,7 @@
     <limit effort="90" velocity="1.396" lower="-1.57" upper="1.57"/>
     <dynamics dampling="2" friction="1"/>
   </joint>
-  
+
   <transmission name="tilt_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_upper_camera_link">
