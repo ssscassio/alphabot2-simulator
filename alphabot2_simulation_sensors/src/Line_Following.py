@@ -5,8 +5,21 @@ import rospy
 import message_filters
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+import math
 
 def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
+    rangesSensor1 = sensor1.ranges.size()
+    rangesSensor2 = sensor2.ranges.size()
+    rangesSensor3 = sensor3.ranges.size()
+    rangesSensor4 = sensor4.ranges.size()
+    rangesSensor5 = sensor5.ranges.size()
+
+    if(sensor1.ranges[rangesSensor1 - 1] == math.inf || sensor2.ranges[rangesSensor2 - 1] == math.inf ||
+        sensor3.ranges[rangesSensor3 - 1] == math.inf || sensor4.ranges[rangesSensor4 - 1] == math.inf ||
+        sensor5.ranges[rangesSensor5 - 1] == math.inf)
+        # Walk to right or left to search for line
+    else
+        # walk front    
 
 def main():
     rospy.init_node('alphabot2_simulation')
