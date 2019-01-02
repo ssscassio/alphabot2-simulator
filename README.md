@@ -21,4 +21,4 @@ rostopic echo /cmd_vel (ENTER)
 # Launch Pantilt
 roslaunch alphabot2_pantilt_control alphabot2_pantilt_control.launch
 
-s   
+rostopic pub -1 /alphabot2/joint_lower_camera_position_controller/command std_msgs/Float64 "data: 0.78"

@@ -80,25 +80,25 @@
     </visual>
   </link>
   
-  <joint name="joint_lower_camera_link" type="revolute"><!--AQUI USAM REVOLUTE -->
+  <joint name="joint_lower_camera_link" type="continuous"><!--AQUI USAM REVOLUTE -->
     <origin rpy="0 0 0" xyz="0 0 0.045"/>
     <child link="lower_camera_link" />
     <parent link="link_chassis"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="90" velocity="1.396" lower="-1.57" upper="1.57"/>
-    <dynamics dampling="0" friction="0"/>
+    <limit effort="30" velocity="1" lower="-1.57" upper="1.57"/>
+    <dynamics dampling="2" friction="2"/>
   </joint>
   
   <gazebo reference="lower_camera_link">
         <material>Gazebo/Yellow</material>
-        <selfCollide>true</selfCollide>
-        <turnGravityOff>true</turnGravityOff>
+        <!--selfCollide>false</selfCollide>
+        <turnGravityOff>true</turnGravityOff-->
   </gazebo>
   
   <transmission name="pan_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_lower_camera_link">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="camera_pan_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -132,8 +132,8 @@
   
   <gazebo reference="upper_camera_link">
         <material>Gazebo/Yellow</material>
-        <selfCollide>true</selfCollide>
-        <turnGravityOff>true</turnGravityOff>
+        <!--selfCollide>true</selfCollide>
+        <turnGravityOff>true</turnGravityOff-->
   </gazebo>
   
   <joint name="joint_upper_camera_link" type="revolute">
@@ -141,8 +141,8 @@
     <child link="upper_camera_link" />
     <parent link="lower_camera_link"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="90" velocity="1.396" lower="-1.57" upper="1.57"/>
-    <dynamics dampling="0" friction="0"/>
+    <limit effort="30" velocity="1" lower="-1.57" upper="1.57"/>
+    <dynamics dampling="2" friction="2"/>
   </joint>
 
   <transmission name="tilt_trans">
@@ -157,7 +157,7 @@
   <!--End Upper Camera-->
   
   
-  <!--For all the transmission tags-->
+  <!--For all the transmission tags; links gazebo with ROS-->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/alphabot2</robotNamespace>
