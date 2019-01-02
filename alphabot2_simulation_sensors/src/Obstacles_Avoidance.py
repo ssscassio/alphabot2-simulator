@@ -7,9 +7,15 @@ from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 import math
 
+pub_ = None
+
 def callback(sensor1, sensor2):
+    global pub_
+
     rangesSensor1 = sensor1.ranges.size()
     rangesSensor2 = sensor2.ranges.size()
+
+    msg = Twist()
 
     if (sensor1.ranges[0] != math.inf || sensor1.ranges[rangesSensor1/3 - 1] != math.inf):
         # Left Obstacle -> try to walk right
@@ -18,9 +24,14 @@ def callback(sensor1, sensor2):
     elif (sensor2.ranges[rangesSensor2/3 * 2 + 1] != math.inf || sensor2.ranges[rangesSensor2 - 1] != math.inf):
         # Right Obstacle -> trye to walk left
     else:
-        # walk normally    
+        msg.linear.x = 0.35
+        msg.angular.z = 0.0
+
+    pub_.publish(msg);
 
 def main():
+    global pub_
+
     rospy.init_node('alphabot2_simulation')
 
     pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
