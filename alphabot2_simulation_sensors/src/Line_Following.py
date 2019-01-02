@@ -16,10 +16,10 @@ def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
 
     if(sensor1.ranges[rangesSensor1 - 1] == math.inf || sensor2.ranges[rangesSensor2 - 1] == math.inf ||
         sensor3.ranges[rangesSensor3 - 1] == math.inf || sensor4.ranges[rangesSensor4 - 1] == math.inf ||
-        sensor5.ranges[rangesSensor5 - 1] == math.inf)
+        sensor5.ranges[rangesSensor5 - 1] == math.inf):
         # Walk to right or left to search for line
     else
-        # walk front    
+        # walk front
 
 def main():
     rospy.init_node('alphabot2_simulation')

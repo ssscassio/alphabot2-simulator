@@ -11,12 +11,14 @@ def callback(sensor1, sensor2):
     rangesSensor1 = sensor1.ranges.size()
     rangesSensor2 = sensor2.ranges.size()
 
-    if (sensor1.ranges[0] != math.inf || sensor1.ranges[rangesSensor1/3 - 1] != math.inf)
+    if (sensor1.ranges[0] != math.inf || sensor1.ranges[rangesSensor1/3 - 1] != math.inf):
         # Left Obstacle -> try to walk right
-    elif (sensor1.ranges[rangesSensor1/3 * 2] != math.inf || sensor2.ranges[rangesSensor2/3 * 2] != math.inf)
+    elif (sensor1.ranges[rangesSensor1/3 * 2] != math.inf || sensor2.ranges[rangesSensor2/3 * 2] != math.inf):
         # Front Obstacle -> try to walk right
-    elif (sensor2.ranges[rangesSensor2/3 * 2 + 1] != math.inf || sensor2.ranges[rangesSensor2 - 1] != math.inf)
+    elif (sensor2.ranges[rangesSensor2/3 * 2 + 1] != math.inf || sensor2.ranges[rangesSensor2 - 1] != math.inf):
         # Right Obstacle -> trye to walk left
+    else:
+        # walk normally    
 
 def main():
     rospy.init_node('alphabot2_simulation')
