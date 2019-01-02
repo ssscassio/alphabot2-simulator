@@ -77,7 +77,7 @@ class TRSensor(object):
 		min_sensor_values = [0]*self.numSensors
 		for j in range(0,10):
 
-			sensor_values = self.AnalogRead();
+			sensor_values = self.AnalogRead()
 
 			for i in range(0,self.numSensors):
 
@@ -106,7 +106,7 @@ class TRSensor(object):
 	def	readCalibrated(self):
 		value = 0
 		#read the needed values
-		sensor_values = self.AnalogRead();
+		sensor_values = self.AnalogRead()
 
 		for i in range (0,self.numSensors):
 

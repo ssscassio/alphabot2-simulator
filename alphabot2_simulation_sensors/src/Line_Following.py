@@ -12,7 +12,7 @@ pub_ = None
 last_vel = [random.uniform(0.1,0.3),  random.uniform(-0.3,0.3)]
 
 def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
-    global pub_, last_vel;
+    global pub_, last_vel
 
     # ver se ranges é o mesmo que samples
     rangesSensor1 = sensor1.ranges.size()
@@ -55,8 +55,8 @@ def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
 
     msg = Twist()
 
-    if (sensor1.ranges[rangesSensor1 - 1] == math.inf || sensor2.ranges[rangesSensor2 - 1] == math.inf ||
-        sensor3.ranges[rangesSensor3 - 1] == math.inf || sensor4.ranges[rangesSensor4 - 1] == math.inf ||
+    if (sensor1.ranges[rangesSensor1 - 1] == math.inf or sensor2.ranges[rangesSensor2 - 1] == math.inf or
+        sensor3.ranges[rangesSensor3 - 1] == math.inf or sensor4.ranges[rangesSensor4 - 1] == math.inf or
         sensor5.ranges[rangesSensor5 - 1] == math.inf):
 
         print
@@ -72,11 +72,11 @@ def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
         msg.linear.x = 0.35
         msg.angular.z = 0.0 # calculate right value
 
-    pub_.publish(msg);
+    pub_.publish(msg)
 
 def main():
 
-    global pub_;
+    global pub_
 
     rospy.init_node('alphabot2_simulation')
 

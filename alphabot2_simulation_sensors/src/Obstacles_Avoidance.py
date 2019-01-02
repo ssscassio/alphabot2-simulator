@@ -23,14 +23,14 @@ def callback(sensor1, sensor2):
 
     msg = Twist()
 
-    if (sensor1.ranges[0] != math.inf || sensor1.ranges[rangesSensor1/3 - 1] != math.inf):
+    if (sensor1.ranges[0] != math.inf or sensor1.ranges[rangesSensor1/3 - 1] != math.inf):
 
         print "Sensor 1 values: "
         print sensor1.ranges[0]
         print sensor1.ranges[rangesSensor1/3 - 1]
 
         # Left Obstacle -> try to walk right
-    elif (sensor1.ranges[rangesSensor1/3 * 2] != math.inf || sensor2.ranges[rangesSensor2/3 * 2] != math.inf):
+    elif (sensor1.ranges[rangesSensor1/3 * 2] != math.inf or sensor2.ranges[rangesSensor2/3 * 2] != math.inf):
 
         print "Sensor 1 value: "
         print sensor1.ranges[rangesSensor1/3 * 2]
@@ -39,7 +39,7 @@ def callback(sensor1, sensor2):
         print sensor2.ranges[rangesSensor2/3 * 2]
 
         # Front Obstacle -> try to walk right
-    elif (sensor2.ranges[rangesSensor2/3 * 2 + 1] != math.inf || sensor2.ranges[rangesSensor2 - 1] != math.inf):
+    elif (sensor2.ranges[rangesSensor2/3 * 2 + 1] != math.inf or sensor2.ranges[rangesSensor2 - 1] != math.inf):
 
         print "Sensor 2 values: "
         print sensor2.ranges[rangesSensor2/3 * 2 + 1]
@@ -50,7 +50,7 @@ def callback(sensor1, sensor2):
         msg.linear.x = 0.35
         msg.angular.z = 0.0 # calculate right value
 
-    pub_.publish(msg);
+    pub_.publish(msg)
 
 def main():
     global pub_
