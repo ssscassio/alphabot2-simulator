@@ -20,7 +20,7 @@
     <!-- chassis collision and visual -->
     <collision name="collision_chassis">
       <geometry>
-        <cylinder radius="0.055" length="0.045"/>
+        <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
       </geometry>
     </collision>
     <visual>
@@ -530,13 +530,6 @@
   </joint>
 
   <link name="sensor1_top">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-    	<box size="0.005 0.006 0.0065"/>
-      </geometry>
-    </collision>
-
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -559,15 +552,15 @@
       <ray>
         <scan>
           <horizontal>
-            <samples>200</samples>
+            <samples>100</samples>
             <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>1.5707963268</max_angle>
+            <min_angle>-0.785398163</min_angle>
+            <max_angle>0.785398163</max_angle>
           </horizontal>
         </scan>
         <range>
           <min>0.0010</min>
-          <max>3.0</max>
+          <max>0.3</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
@@ -591,13 +584,6 @@
   </joint>
 
   <link name="sensor2_top">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-    	<box size="0.005 0.006 0.0065"/>
-      </geometry>
-    </collision>
-
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -620,15 +606,15 @@
       <ray>
         <scan>
           <horizontal>
-            <samples>200</samples>
+            <samples>100</samples>
             <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>1.5707963268</max_angle>
+            <min_angle>-0.785398163</min_angle>
+            <max_angle>0.785398163</max_angle>
           </horizontal>
         </scan>
         <range>
           <min>0.0010</min>
-          <max>3.0</max>
+          <max>0.3</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
