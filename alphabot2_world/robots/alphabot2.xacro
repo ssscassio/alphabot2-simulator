@@ -112,17 +112,17 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <inertial>
       <mass value="0.0225"/>
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0 "/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0.000006" iyz="0" izz="0.000005"/>
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <inertia ixx="0.0000058388" ixy="0" ixz="0" iyy="0.0000063638" iyz="0" izz="0.0000046088"/>
     </inertial>
     <collision name="upper_camera_collision">
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
         <box size="0.037 0.033 0.045"/>
       </geometry>
     </collision>
     <visual name="upper_camera_visual">
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <box size="0.037 0.033 0.045"/>
       </geometry>      
@@ -137,7 +137,7 @@
   </gazebo>
   
   <joint name="joint_upper_camera_link" type="revolute">
-    <origin rpy="0 ${-3.14/2} 0" xyz="0 0 0.045"/> <!--0.045-->
+    <origin rpy="0 0 0" xyz="0 0 0.045"/> <!--0.045-->
     <child link="upper_camera_link" />
     <parent link="lower_camera_link"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -148,7 +148,7 @@
   <transmission name="tilt_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_upper_camera_link">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="camera_tilt_motor">
       <mechanicalReduction>1</mechanicalReduction>
