@@ -25,7 +25,7 @@ def callback(sensor1, sensor2):
         # Right Obstacle -> trye to walk left
     else:
         msg.linear.x = 0.35
-        msg.angular.z = 0.0
+        msg.angular.z = 0.0 # calculate right value
 
     pub_.publish(msg);
 
