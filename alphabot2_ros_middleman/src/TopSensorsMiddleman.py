@@ -3,16 +3,17 @@
 # ROS imports
 import rospy
 import message_filters
+from std_msgs.msg import Int32MultiArray
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 import math
 
-
-pub_ = None
+algorithmTopic = None
 
 def callback(sensor1, sensor2):
-    global pub_
+    global algorithmTopic
 
+    msg = Int32MultiArray()
     foundLeft = False
     foundRight = False
 
@@ -25,25 +26,28 @@ def callback(sensor1, sensor2):
             foundLeft = True
     
     if foundRight and not foundLeft:
-        print "Turn left"
+        msg.data = [True, False]
+        print "Left"
     elif foundRight and foundLeft:
-        print "Obstacle in front"
+        msg.data = [True, True]
+        print "Stop"
     elif not foundRight and foundLeft:
-        print "Turn right"
+        msg.data = [False, True]
+        print "Right"
     else:
+        msg.data = [False, False]
         print "Front"
 
-    #msg = Twist()
 
-    #pub_.publish(msg)
+    algorithmTopic.publish(msg)
 
 
 def main():
-    global pub_
+    global algorithmTopic
 
     rospy.init_node('alphabot2_top_sensors_middleman')
 
-    #pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1) #TODO fix topic
+    algorithmTopic = rospy.Publisher('/alphabot2/top_sensors', Int32MultiArray, queue_size=1)
 
     sub1 = message_filters.Subscriber('/alphabot2/laser/scan/sensor1_top', LaserScan)
     sub2 = message_filters.Subscriber('/alphabot2/laser/scan/sensor2_top', LaserScan)
