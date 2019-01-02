@@ -8,6 +8,8 @@ from sensor_msgs.msg import LaserScan, Image
 from geometry_msgs.msg import Twist
 import math
 from cv_bridge import CvBridge, CvBridgeError
+import cv2
+import numpy as np
 
 algorithmTopic = None
 
@@ -15,8 +17,9 @@ def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
     global algorithmTopic
 
     msg = Int32MultiArray()
-    print CvBridge().imgmsg_to_cv2(sensor1, "bgr8")
-    print len(sensor1.data)
+    bridge = CvBridge()
+    brightness1 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor1, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    print(brightness1)
 
     #algorithmTopic.publish(msg)
 
