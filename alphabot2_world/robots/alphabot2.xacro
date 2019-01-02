@@ -164,7 +164,7 @@
 
   <joint name="sensor1_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.038 -0.028 -0.0242" rpy="0 0 0"/>
+    <origin xyz="0.038 -0.028 -0.0242" rpy="0 1.57 0"/>
     <parent link="link_chassis"/>
     <child link="sensor1_bottom"/>
   </joint>
@@ -192,40 +192,51 @@
   </link>
 
   <gazebo reference="sensor1_bottom">
-    <sensor type="ray" name="head_sensor1">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>-1.5707963268</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.0010</min>
-          <max>0.20</max>
-          <resolution>0.01</resolution>
-        </range>
+    <sensor name="sensor1_bottom" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
+      <update_rate>40.0</update_rate>
+      <camera name="sensor1_bottom">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <horizontal_fov>1.08504</horizontal_fov>
+        <image>
+          <width>100</width>
+          <height>100</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>5</far>
+        </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
-          <stddev>0.01</stddev>
+          <stddev>0.007</stddev>
         </noise>
-      </ray>
-      <plugin name="sensor1_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/alphabot2/laser/scan/sensor1</topicName>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40.0</updateRate>
+        <cameraName>sensor1_cam/</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor1_bottom</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
 
   <joint name="sensor2_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.038  -0.014 -0.0242" rpy="0 0 0"/>
+    <origin xyz="0.038  -0.014 -0.0242" rpy="0 1.57 0"/>
     <parent link="link_chassis"/>
     <child link="sensor2_bottom"/>
   </joint>
@@ -253,40 +264,51 @@
   </link>
 
   <gazebo reference="sensor2_bottom">
-    <sensor type="ray" name="head_sensor2">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>-1.5707963268</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.0010</min>
-          <max>0.20</max>
-          <resolution>0.01</resolution>
-        </range>
+    <sensor name="sensor2_bottom" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
+      <update_rate>40.0</update_rate>
+      <camera name="sensor2_bottom">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <horizontal_fov>1.08504</horizontal_fov>
+        <image>
+          <width>100</width>
+          <height>100</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>5</far>
+        </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
-          <stddev>0.01</stddev>
+          <stddev>0.007</stddev>
         </noise>
-      </ray>
-      <plugin name="sensor2_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/alphabot2/laser/scan/sensor2</topicName>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40.0</updateRate>
+        <cameraName>sensor2_bottom/</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor2_bottom</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
 
   <joint name="sensor3_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.038 0 -0.0242" rpy="0 0 0"/>
+    <origin xyz="0.038 0 -0.0242" rpy="0 1.57 0"/>
     <parent link="link_chassis"/>
     <child link="sensor3_bottom"/>
   </joint>
@@ -314,40 +336,51 @@
   </link>
 
   <gazebo reference="sensor3_bottom">
-    <sensor type="ray" name="head_sensor3">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>-1.5707963268</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.0010</min>
-          <max>0.20</max>
-          <resolution>0.01</resolution>
-        </range>
+    <sensor name="sensor3_bottom" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
+      <update_rate>40.0</update_rate>
+      <camera name="sensor3_bottom">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <horizontal_fov>1.08504</horizontal_fov>
+        <image>
+          <width>100</width>
+          <height>100</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>5</far>
+        </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
-          <stddev>0.01</stddev>
+          <stddev>0.007</stddev>
         </noise>
-      </ray>
-      <plugin name="sensor3_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/alphabot2/laser/scan/sensor3</topicName>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40.0</updateRate>
+        <cameraName>sensor3_bottom/</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor3_bottom</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
 
   <joint name="sensor4_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.038 0.014 -0.0242" rpy="0 0 0"/>
+    <origin xyz="0.038 0.014 -0.0242" rpy="0 1.57 0"/>
     <parent link="link_chassis"/>
     <child link="sensor4_bottom"/>
   </joint>
@@ -375,40 +408,51 @@
   </link>
 
   <gazebo reference="sensor4_bottom">
-    <sensor type="ray" name="head_sensor4">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>-1.5707963268</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.0010</min>
-          <max>0.20</max>
-          <resolution>0.01</resolution>
-        </range>
+    <sensor name="sensor4_bottom" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
+      <update_rate>40.0</update_rate>
+      <camera name="sensor4_bottom">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <horizontal_fov>1.08504</horizontal_fov>
+        <image>
+          <width>100</width>
+          <height>100</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>5</far>
+        </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
-          <stddev>0.01</stddev>
+          <stddev>0.007</stddev>
         </noise>
-      </ray>
-      <plugin name="sensor4_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/alphabot2/laser/scan/sensor4</topicName>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40.0</updateRate>
+        <cameraName>sensor4_bottom/</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor4_bottom</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
 
   <joint name="sensor5_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.038 0.028 -0.0242" rpy="0 0 0"/>
+    <origin xyz="0.038 0.028 -0.0242" rpy="0 1.57 0"/>
     <parent link="link_chassis"/>
     <child link="sensor5_bottom"/>
   </joint>
@@ -436,40 +480,51 @@
   </link>
 
   <gazebo reference="sensor5_bottom">
-    <sensor type="ray" name="head_sensor5">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963268</min_angle>
-            <max_angle>-1.5707963268</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.0010</min>
-          <max>0.20</max>
-          <resolution>0.01</resolution>
-        </range>
+    <sensor name="sensor5_bottom" type="camera" >
+      <visualize>1</visualize>
+      <always_on>1</always_on>
+      <update_rate>40.0</update_rate>
+      <camera name="sensor5_bottom">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <horizontal_fov>1.08504</horizontal_fov>
+        <image>
+          <width>100</width>
+          <height>100</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>5</far>
+        </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
-          <stddev>0.01</stddev>
+          <stddev>0.007</stddev>
         </noise>
-      </ray>
-      <plugin name="sensor5_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/alphabot2/laser/scan/sensor5</topicName>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40.0</updateRate>
+        <cameraName>sensor5_bottom/</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor5_bottom</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
 
   <joint name="sensor1_top_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.0469 -0.022 0.0242" rpy="0 0 0"/>
+    <origin xyz="0.0469 -0.022 -0.0183" rpy="0 0 0"/>
     <parent link="link_chassis"/>
     <child link="sensor1_top"/>
   </joint>
@@ -530,7 +585,7 @@
 
   <joint name="sensor2_top_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.0469 0.022 0.0242" rpy="0 0 0"/>
+    <origin xyz="0.0469 0.022 -0.0183" rpy="0 0 0"/>
     <parent link="link_chassis"/>
     <child link="sensor2_top"/>
   </joint>
