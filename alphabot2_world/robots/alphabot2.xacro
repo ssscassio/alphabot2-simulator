@@ -200,8 +200,8 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>100</width>
-          <height>100</height>
+          <width>10</width>
+          <height>10</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -220,7 +220,7 @@
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>40.0</updateRate>
-        <cameraName>sensor1_cam/</cameraName>
+        <cameraName>sensor1_bottom/</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>sensor1_bottom</frameName>
@@ -272,8 +272,8 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>100</width>
-          <height>100</height>
+          <width>10</width>
+          <height>10</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -344,8 +344,8 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>100</width>
-          <height>100</height>
+          <width>10</width>
+          <height>10</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -416,8 +416,8 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>100</width>
-          <height>100</height>
+          <width>10</width>
+          <height>10</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -488,8 +488,8 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
         <horizontal_fov>1.08504</horizontal_fov>
         <image>
-          <width>100</width>
-          <height>100</height>
+          <width>10</width>
+          <height>10</height>
           <format>R8G8B8</format>
         </image>
         <clip>
