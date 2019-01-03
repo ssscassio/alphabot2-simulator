@@ -17,9 +17,6 @@
   <gazebo reference="link_lower_camera">
     <material>Gazebo/Yellow</material>
   </gazebo>
-  <gazebo reference="link_upper_camera">
-    <material>Gazebo/Yellow</material>
-  </gazebo>
 
   <!-- end of gazebo colors definitions -->
 

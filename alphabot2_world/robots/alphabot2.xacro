@@ -89,11 +89,9 @@
     type="continuous"
     child="link_lower_camera"
     parent="link_chassis"
-    origin_xyz="0 0 0.045">
-    <axis>
-      <axis rpy="0 0 0" xyz="0 0 1"/>
-    </axis>
-  </xacro:pan_tilt_joint>
+    origin_xyz="0 0 0.045"
+    axis_xyz="0 0 1"
+    /> 
   <!-- end of joint pan -->
 
   <!--<joint name="joint_link_lower_camera" type="continuous">
@@ -152,9 +150,9 @@
     type="revolute"
     child="link_upper_camera"
     parent="link_lower_camera"
-    origin_xyz="0 0 0.045">
-    <axis rpy="0 0 0" xyz="0 1 0 "/>
-  </xacro:pan_tilt_joint>
+    origin_xyz="0 0 0.045"
+    axis="0 1 0"
+    />
 
   <!--<joint name="joint_link_upper_camera" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0.045"/>
