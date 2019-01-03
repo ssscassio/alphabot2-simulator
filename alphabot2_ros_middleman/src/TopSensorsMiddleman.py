@@ -24,19 +24,8 @@ def callback(sensor1, sensor2):
     for s in sensor2.ranges:
         if not math.isinf(s):
             foundLeft = True
-    
-    if foundRight and not foundLeft:
-        msg.data = [True, False]
-        print "Left"
-    elif foundRight and foundLeft:
-        msg.data = [True, True]
-        print "Stop"
-    elif not foundRight and foundLeft:
-        msg.data = [False, True]
-        print "Right"
-    else:
-        msg.data = [False, False]
-        print "Front"
+
+    msg.data = [foundRight, foundLeft]
 
 
     algorithmTopic.publish(msg)

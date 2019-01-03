@@ -6,7 +6,6 @@ import message_filters
 from std_msgs.msg import Int32MultiArray
 from sensor_msgs.msg import LaserScan, Image
 from geometry_msgs.msg import Twist
-import math
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import numpy as np
