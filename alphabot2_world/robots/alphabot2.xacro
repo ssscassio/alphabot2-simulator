@@ -151,7 +151,7 @@
     child="link_upper_camera"
     parent="link_lower_camera"
     origin_xyz="0 0 0.045"
-    axis="0 1 0"
+    axis_xyz="0 1 0"
     />
 
   <!--<joint name="joint_link_upper_camera" type="revolute">

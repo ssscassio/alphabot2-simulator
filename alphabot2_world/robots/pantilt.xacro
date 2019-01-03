@@ -28,7 +28,7 @@
   <!-- end of pan tilt link -->
 
   <!-- pan tilt joint -->
-  <xacro:macro name="pan_tilt_joint" params="name type child parent origin_xyz axis">
+  <xacro:macro name="pan_tilt_joint" params="name type child parent origin_xyz axis_xyz">
     <joint name="${name}" type="${type}">
       <origin rpy="0 0 0" xyz="${origin_xyz}"/>
       <child link="${child}"/>
