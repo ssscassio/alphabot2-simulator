@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import rospy
-from std_msgs.msg import String
+from geometry_msgs.msg import Twist
+from std_msgs.msg import Int32MultiArray
 
 import time
 import RPi.GPIO as GPIO
@@ -27,7 +28,7 @@ lightSensors = None # below board # higher values -> darker lighting
 proximitySensors = None # front of board
 
 def getSensorsInfos():
-        light = lightSensors.AnalogRead()
+        light = lightSensors.AnalogRead() #TODO use eadCalibrated()?
         proximity = proximitySensors.getStatus()
         #TO DO: edit return statement to publish somewhere
         return light, proximity
@@ -37,9 +38,10 @@ def getSensorsInfos():
 
 robot = AlphaBot2()
 
-def movementCmdCallback(data): # called by another ROS node
-    movType = data.data
-    print(movType)
+
+def movementCmdCallback(msg): # called by another ROS node
+    print(msg)
+    movType = "forward"
     if movType == "forward":
         robot.forward()
     elif movType == "stop":
@@ -52,43 +54,37 @@ def movementCmdCallback(data): # called by another ROS node
         robot.right()
     # TO DO: handle more data (?)
 
-# MAIN
 
-MOVEMENT_TOPIC = "alphabot_move"
-SENSORS_TOPIC = "alphabot_sensors"
+# MAIN
 
 def main():
     # setup
     global lightSensors
     global proximitySensors
     lightSensors = TRSensor()
-    proximitySensors = IRSensor()
+    proximitySensors = IRSensor
+
+    #lightSensors.calibrate()
     proximitySensors.setup(robot)
 
-    # make a broadcaster
-    sensorsPub = rospy.Publisher(SENSORS_TOPIC, String, queue_size=10)
+    # make broadcasters
+    topSensorsPub = rospy.Publisher("/alphabot2/top_sensors", Int32MultiArray, queue_size=10)
+    bottomSensorsPub = rospy.Publisher("/alphabot2/bottom_sensors", Int32MultiArray, queue_size=10)
+
     # start node
-    rospy.init_node('alphabot_handler', anonymous=True)
+    rospy.init_node('alphabot2_handler', anonymous=True)
+
     # subscribe movement_listener
-    rospy.Subscriber(MOVEMENT_TOPIC, String, movementCmdCallback)
+    rospy.Subscriber("/cmd_vel", Twist, movementCmdCallback)
 
     rate = rospy.Rate(10)
     while True: #TO DO: is there a ROS::ok equivalent for phyton?
         light, proximity = getSensorsInfos()
-        printLightSensors(light)
-        printProximitySensors(proximity)
-        sensorsStr = str(light+proximity)
-        print(sensorsStr)
 
-        sensorsPub.publish(sensorsStr)
+        topSensorsPub.publish(Int32MultiArray(data=proximity))
+        bottomSensorsPub.publish(Int32MultiArray(data=light))
         rospy.spinOnce()
         rate.sleep()
-
-    #while True:
-    #   light, proximity = getSensorsInfos()
-    #   printLightSensors(light)
-    #   printProximitySensors(proximity)
-    #   time.sleep(0.2)
 
 if __name__ == "__main__":
     try:
