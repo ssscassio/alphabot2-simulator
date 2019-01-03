@@ -6,9 +6,6 @@ from geometry_msgs.msg import Twist
 import time
 import RPi.GPIO as GPIO
 
-message_to_send_to_simulation = Twist()
-message_to_send_to_alphabot = Twist()
-
 IN1 = 13
 IN2 = 12
 IN3 = 21
@@ -19,6 +16,7 @@ PA  = 50
 PB  = 50
 
 class driver:
+  """ Class to control the real robot. Reference: https://github.com/azazdeaz/alphabot2-ros/"""
   def __init__(self):
     self.IN1 = 13
     self.IN2 = 12
@@ -83,28 +81,37 @@ class driver:
 
 
 
-def callback(alphabot2_cmd_vel):
-  global message_to_send_to_alphabot, message_to_send_to_simulation
-  # Sending to Simulator
-  message_to_send_to_simulation = alphabot2_cmd_vel
-  gazebo_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
-  gazebo_pub.publish(message_to_send_to_simulation)
-  
-  # Sending to Alphabot2
-  d = driver()
-  d.drive(data)
-  
-  
+class control_node:
+
+  def __init__(self):
+    """ Initialize control node """
+    rospy.init_node('alphabot_control_node', anonymous= True)
+
+    """ Subscribe to alphabot_control topic of Twist type"""
+    self.sub = rospy.Subscriber('/alphabot2_control', Twist, self.callback)
+
+    """ Initialize publisher to Gazebo"""
+    self.gazebo_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+
+    """ Initialize drive of real robot """
+    self.real_robot = driver()
+
+
+  def callback(self, message_received):
+    # Sending to Simulator
+    self.gazebo_pub.publish(message_received)
+    
+    # Sending to Alphabot2
+    self.real_robot.drive(message_received)
+    
 
 def main():
-  rospy.init_node('alphabot_control', anonymous= True)
-
-  sub = rospy.Subscriber('/alphabot2_cmd_vel', Twist, callback)
+  cn = control_node()
   rospy.spin()
 
 if __name__ == '__main__':
-    try:
-        main()
-    except rospy.ROSInterruptException:
-        pass
-
+  try:
+    main()
+  except rospy.ROSInterruptException:
+    print ("Shutting down alphabot2 control node.")
+    pass
