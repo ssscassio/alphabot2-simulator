@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-# import rospy
-# from std_msgs.msg import Float64
-# from utils.PCA9685 import PCA9685
-# import math
-# import RPi.GPIO as GPIO
-# import time
+import rospy
+from std_msgs.msg import Float64
+from utils.PCA9685 import PCA9685
+import math
+import RPi.GPIO as GPIO
+import time
 
 IN_MIN = -90
 IN_MAX = +90
@@ -41,6 +41,7 @@ class pan_tilt_node:
     self.gazebo_vertical_pub = rospy.Publisher("/alphabot2/joint_upper_camera_position_controller/command", Float64, queue_size=10)
     self.gazebo_horizontal_pub = rospy.Publisher("/alphabot2/joint_lower_camera_position_controller/command", Float64, queue_size=10)
 
+    """ Initialize Alphabot2 Pan Tilt control """
     self.real_robot =  alphabot_pantilt()
 
   def vertical_callback(angle_degree):
@@ -63,19 +64,6 @@ class pan_tilt_node:
 
   def convert_degree_to_rad(angle_degree):
     return angle_degree*math.pi/180
-
-
-# def degree_to_rad_lower():
-    # angle_rad = angle_lower*math.pi/180
-    
-    # pub_lower_angle = rospy.Publisher("/alphabot2/joint_lower_camera_position_controller/command", Float64, queue_size=10)
-    # rospy.init_node('pub_lower_angle', anonymous=True)
-    # rate = rospy.Rate(10) # 10hz
-    # while not rospy.is_shutdown():
-    #     rospy.loginfo(pub_lower_angle)
-    #     pub.publish(pub_lower_angle)
-    #     rate.sleep()
-
 
 def main():
   ptn = pan_tilt_node()
