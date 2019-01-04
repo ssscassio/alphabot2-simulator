@@ -1,0 +1,9 @@
+<launch>
+  <node 
+    pkg="alphabot2_pantilt" 
+    type="alphabot2_pantilt_node_real.py" 
+    name="alphabot2_pantilt_node_real" 
+    ns="/alphabot2" 
+    output="screen" 
+    launch-prefix="xterm -e"/>
+</launch>
