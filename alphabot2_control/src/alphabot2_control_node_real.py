@@ -79,31 +79,22 @@ class driver:
     left = int((x - angular) * 50)
     self.set_motor(left, right)
 
-
-
 class control_node:
 
   def __init__(self):
     """ Initialize control node """
-    rospy.init_node('alphabot_control_node', anonymous= True)
+    rospy.init_node('alphabot_control_node_real', anonymous= True)
 
     """ Subscribe to alphabot_control topic of Twist type"""
     self.sub = rospy.Subscriber('/alphabot2_control', Twist, self.callback)
-
-    """ Initialize publisher to Gazebo"""
-    self.gazebo_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
     """ Initialize drive of real robot """
     self.real_robot = driver()
 
 
   def callback(self, message_received):
-    # Sending to Simulator
-    self.gazebo_pub.publish(message_received)
-    
-    # Sending to Alphabot2
+    """ Sending to Alphabot2 """
     self.real_robot.drive(message_received)
-    
 
 def main():
   cn = control_node()
