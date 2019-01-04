@@ -36,16 +36,30 @@ def calculateMovement(sensorsTop, sensorsBottom):
         print "Everything fine"
         msg.linear.x = HIGH_LINEAR_SPEED
         msg.angular.z = 0
-    
+
     #TODO consider bottom sensors
-    
+
+    brightness1, brightness2, brightness3, brightness4, brightness5 = sensorBottom.data
+    if (brightness3 == 100 && (brightness1 == 100 || brightness2 == 100 || brightness4 == 100 || brightness5 == 100)):
+        print "Line following"
+        msg.linear.x = HIGH_LINEAR_SPEED
+        msg.angular.z = 0
+    elif (brightness1 > brightness5):
+        print "Line on the right. Turning Right"
+        msg.linear.x = LOW_LINEAR_SPEED
+        msg.angular.z = - HIGH_ANGULAR_SPEED
+    else:
+        print "Line on the left. Turning left"
+        msg.linear.x = LOW_LINEAR_SPEED
+        msg.angular.z = HIGH_ANGULAR_SPEED
+
     movementTopic.publish(msg)
 
 
 def callbackTop(sensors):
     global topSensors
     global bottomSensors
-    
+
     #print "Received Top"
     lock.acquire()
     if bottomSensors is not None:
@@ -55,7 +69,7 @@ def callbackTop(sensors):
         topSensors = None
         lock.release()
         calculateMovement(top, bottom)
-    else: 
+    else:
         lock.release()
         topSensors = sensors
 
@@ -73,7 +87,7 @@ def callbackBottom(sensors):
         topSensors = None
         lock.release()
         calculateMovement(top, bottom)
-    else: 
+    else:
         lock.release()
         bottomSensors = sensors
 
