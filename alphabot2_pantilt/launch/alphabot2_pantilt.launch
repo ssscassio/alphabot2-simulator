@@ -12,5 +12,7 @@
 	respawn="false" output="screen">
     <remap from="/joint_states" to="/alphabot2/joint_states" />
   </node>
-  
+
+  <node pkg="alphabot2_pantilt" type="alphabot2_pantilt_node.py" name="alphabot2_pantilt_node" ns="/alphabot2" output="screen" launch-prefix="xterm -e" />
+
 </launch>
