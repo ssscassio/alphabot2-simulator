@@ -104,3 +104,19 @@ rostopic pub /alphabot2_horizontal std_msgs/Float64 "data: 45"
 ```
 rostopic pub /alphabot2_vertical std_msgs/Float64 "data: -23"
 ```
+
+
+To check that it's being published the correct sensors results to the real robot and the simulated robot:
+
+
+**Top Sensors**
+
+```
+rostopic echo /alphabot2/top_sensors
+```
+
+**Bottom Sensors**
+
+```
+rostopic echo /alphabot2/bottom_sensors
+```
