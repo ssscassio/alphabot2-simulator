@@ -52,6 +52,12 @@ To launch the pan tilt control node run:
 roslaunch alphabot2_pantilt_control alphabot2_pantilt_control_gazebo.launch
 ```
 
+To launch the robot movement created by the sensors node run:
+
+```
+roslaunch alphabot2_control alphabot2_control.launch
+```
+
 ### Real Robot:
 
 To launch the control node run:
