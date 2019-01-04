@@ -1,0 +1,9 @@
+<launch>
+  <node 
+    pkg="alphabot2_control" 
+    type="alphabot2_control_node_gazebo.py" 
+    name="alphabot2_control_node_gazebo" 
+    ns="/alphabot2" 
+    output="screen" 
+    launch-prefix="xterm -e" />
+</launch>
