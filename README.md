@@ -120,3 +120,8 @@ rostopic echo /alphabot2/top_sensors
 ```
 rostopic echo /alphabot2/bottom_sensors
 ```
+
+## Papers related
+
+* **Sensors Paper:** [Line Following and Obstacle Avoidance behavioursfor AlphaBot2 RPi - real and simulated](https://www.overleaf.com/read/xzgnsxbwqqdk) (Latex format - still to be completed)
+* **Camera Paper:** (Still to be added)
