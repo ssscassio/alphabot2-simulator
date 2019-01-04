@@ -40,15 +40,17 @@ def calculateMovement(sensorsTop, sensorsBottom):
     #TODO consider bottom sensors
 
     brightness1, brightness2, brightness3, brightness4, brightness5 = sensorBottom.data
+
+    # checks if the middle sensor scans the line (it's mandatory to happen) and if the other sensors scan also the respective line
     if (brightness3 == 100 && (brightness1 == 100 || brightness2 == 100 || brightness4 == 100 || brightness5 == 100)):
         print "Line following"
         msg.linear.x = HIGH_LINEAR_SPEED
         msg.angular.z = 0
-    elif (brightness1 > brightness5):
+    elif (brightness1 > brightness5): # first sensor (most right sensor) scans more brightness (it's near the line) than the most left sensor
         print "Line on the right. Turning Right"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = - HIGH_ANGULAR_SPEED
-    else:
+    else: # last sensor (most left sensor) scans more brightness (it's near the line) than the most right sensor or scans the same brightness (robot starts wandering always to the left to search the line)
         print "Line on the left. Turning left"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = HIGH_ANGULAR_SPEED
