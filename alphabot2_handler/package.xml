@@ -53,10 +53,10 @@
   <build_depend>message_generation</build_depend>
   <build_export_depend>rospy</build_export_depend>
   <exec_depend>rospy</exec_depend>
-<exec_depend>message_runtime</exec_depend>
-<exec_depend>cv_bridge</exec_depend>
-<exec_depend>image_geometry</exec_depend>
-<exec_depend>python-smbus</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>image_geometry</exec_depend>
+  <exec_depend>python-smbus</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

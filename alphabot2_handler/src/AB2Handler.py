@@ -77,13 +77,14 @@ def main():
     # subscribe movement_listener
     rospy.Subscriber("/cmd_vel", Twist, movementCmdCallback)
 
+    print "starting loop..."
+
     rate = rospy.Rate(10)
     while True: #TO DO: is there a ROS::ok equivalent for phyton?
         light, proximity = getSensorsInfos()
 
         topSensorsPub.publish(Int32MultiArray(data=proximity))
         bottomSensorsPub.publish(Int32MultiArray(data=light))
-        rospy.spinOnce()
         rate.sleep()
 
 if __name__ == "__main__":
