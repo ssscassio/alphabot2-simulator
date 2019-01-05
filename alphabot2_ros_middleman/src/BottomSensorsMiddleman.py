@@ -17,19 +17,19 @@ def callback(sensor1, sensor2, sensor3, sensor4, sensor5):
 
     msg = Int32MultiArray()
     bridge = CvBridge()
-    brightness1 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor1, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    brightness1 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor1, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/255)
     print(brightness1)
 
-    brightness2 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor2, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    brightness2 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor2, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/255)
     print(brightness2)
 
-    brightness3 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor3, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    brightness3 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor3, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/255)
     print(brightness3)
 
-    brightness4 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor4, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    brightness4 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor4, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/255)
     print(brightness4)
 
-    brightness5 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor5, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/7)
+    brightness5 = round(np.mean(cv2.cvtColor(bridge.imgmsg_to_cv2(sensor5, "bgr8"),cv2.COLOR_BGR2GRAY).flatten())*100/255)
     print(brightness5)
 
     msg.data = [brightness1, brightness2, brightness3, brightness4, brightness5]

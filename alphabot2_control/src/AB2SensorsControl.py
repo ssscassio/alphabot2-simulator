@@ -13,6 +13,8 @@ LOW_LINEAR_SPEED = 0.2
 HIGH_ANGULAR_SPEED = 1
 LOW_ANGULAR_SPEED = 0.3
 
+BRIGHTNESS_THRESHOLD = 50
+
 
 movementTopic = None
 bottomSensors = None
@@ -24,25 +26,31 @@ def calculateMovement(sensorsTop, sensorsBottom):
 
     msg = Twist()
     obstacleRight, obstacleLeft = sensorsTop.data
-    if obstacleLeft: #should this also consider obstacleRight and obstacleLeft simultaneously?
+    if obstacleLeft: #TODO should this also consider obstacleRight and obstacleLeft simultaneously?
         print "Obstacle found on the left. Turning right"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = - HIGH_ANGULAR_SPEED
+        return
     elif obstacleRight:
         print "Obstacle found on the right. Turning left"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = HIGH_ANGULAR_SPEED
-    else:
-        print "Everything fine"
-        msg.linear.x = HIGH_LINEAR_SPEED
-        msg.angular.z = 0
+        return
+    #else:
+    #    print "Everything fine"
+    #    msg.linear.x = HIGH_LINEAR_SPEED
+    #    msg.angular.z = 0
 
-    #TODO consider bottom sensors
 
-    brightness1, brightness2, brightness3, brightness4, brightness5 = sensorBottom.data
+    brightness1, brightness2, brightness3, brightness4, brightness5 = sensorsBottom.data
+    print(sensorsBottom.data)
+
+    min_brightness = min(brightness1, brightness2, brightness3, brightness4, brightness5)
+    max_brightness = min(brightness1, brightness2, brightness3, brightness4, brightness5)
+    deviation = (brightness1 + brightness2) - (brightness4 + brightness5)
 
     # checks if the middle sensor scans the line (it's mandatory to happen) and if the other sensors scan also the respective line
-    if (brightness3 == 100 && (brightness1 == 100 || brightness2 == 100 || brightness4 == 100 || brightness5 == 100)):
+    if (brightness3 == 100 and (brightness1 == 100 or brightness2 == 100 or brightness4 == 100 or brightness5 == 100)):
         print "Line following"
         msg.linear.x = HIGH_LINEAR_SPEED
         msg.angular.z = 0
