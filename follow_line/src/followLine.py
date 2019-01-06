@@ -62,7 +62,7 @@ def sensorcallback(data):
     velocityToSend.linear.z = 0
 
     """ Publish alphabot2/control """    
-    vel_pub = rospy.Publisher('/alphabot2_control', Twist, queue_size=1)
+    vel_pub = rospy.Publisher('/alphabot2/control', Twist, queue_size=1)
     while True:
         vel_pub.publish(velocityToSend)
     #print_string = "Line Ok - turn %d - line t: %d, r: %d" % (output, line.theta(), line.rho())
@@ -76,7 +76,7 @@ def line_to_theta_and_rho_error(img):
 
 def main():
         """ Subscribe to image """
-        image_transport::Subscriber sub = rospy.Subscriber('/alphabot2_camera', alphabot2_image, sensorCallback)
+        image_transport::Subscriber sub = rospy.Subscriber('/alphabot2/camera', alphabot2_image, sensorCallback)
         
 
         rospy.spin()

@@ -23,7 +23,7 @@ class camera_node:
         self.bridge = CvBridge()
 
         """ Subscribe to the raw camera image topic """
-        self.image_sub = rospy.Subscriber("alphabot2_camera/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("alphabot2/camera/image_raw", Image, self.callback)
 
             
 

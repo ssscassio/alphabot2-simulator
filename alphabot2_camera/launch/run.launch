@@ -1,5 +1,5 @@
 <launch>
-  <node pkg="alphabot2_camera" type="alphabot2_camera_node.py" name="alphabot2_camera_node" ns="alphabot2_camera" output="screen" launch-prefix="xterm -e">
-    <param name="camera" value="/alphabot2_camera/image_raw" />
+  <node pkg="alphabot2_camera" type="alphabot2_camera_node.py" name="alphabot2_camera_node" ns="/alphabot2" output="screen" launch-prefix="xterm -e">
+    <param name="camera" value="/alphabot2/camera/image_raw" />
   </node>
 </launch>

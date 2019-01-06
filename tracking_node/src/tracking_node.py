@@ -18,7 +18,7 @@ class camera_node:
     def __init__(self):
 
         """ Subscribe to alphabot image_raw """
-        self.image_sub = rospy.Subscriber("/alphabot2_raw_image", , self.image_callback)
+        self.image_sub = rospy.Subscriber("/alphabot2/raw_image", , self.image_callback)
         #TODO: A IMAGE NÃO ESTÁ A SER PUBLICADA COM ESTE NOME NEM NENHUM... QUE TIPO DE IMAGEM É' cv?
 
         """ Subscribe to real robot image_raw """

@@ -12,7 +12,7 @@ class control_node:
     rospy.init_node('alphabot_control_node_gazebo', anonymous= True)
 
     """ Subscribe to alphabot_control topic of Twist type"""
-    self.sub = rospy.Subscriber('/alphabot2_control', Twist, self.callback)
+    self.sub = rospy.Subscriber('/alphabot2/control', Twist, self.callback)
 
     """ Initialize publisher to Gazebo"""
     self.gazebo_pub = rospy.Publisher('/alphabot2/control', Twist, queue_size=1)

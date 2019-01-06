@@ -73,7 +73,7 @@ Topics:
 - `/alphabot2_control`: Used to control the robot movement, `geometry_msgs/Twist` to be publish
 - `/alphabot2/vertical`: Used to control **Tilt** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
 - `/alphabot2/horizontal`: Used to control **Pan** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
-- `/alphabot2_camera/image_raw`: Publishes `sensor_msgs/Image` from the camera module.
+- `/raspicam_node/image`: Publishes `sensor_msgs/Image` from the camera module.
 
 ## Testing controls
 
