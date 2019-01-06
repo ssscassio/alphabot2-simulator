@@ -11,6 +11,9 @@
   <gazebo reference="link_right_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
+  <gazebo reference="upper_camera_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
   <!-- end of gazebo colors definitions -->
 
   <!-- Diferential Control -->

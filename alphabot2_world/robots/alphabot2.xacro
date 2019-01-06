@@ -24,9 +24,9 @@
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.0225"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0065"/>
       <geometry>
-        <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
+        <cylinder radius="0.055" length="0.045"/>
       </geometry>
       <material name="blue"/>
     </visual>
@@ -58,68 +58,114 @@
   <xacro:joint_wheel name="joint_left_wheel"   child="link_left_wheel"   origin_xyz="0 -0.046 -0.016"  />
   <!-- end of joint for left wheel -->
 
-  <!--<link name="lower_camera_link">
-  <inertial>
+  <!-- Lower Camera-->
+  <link name="lower_camera_link">
+    <inertial>
       <mass value="0.0225"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0.0000058388" ixy="0" ixz="0" iyy="0.0000063638" iyz="0" izz="0.0000046088"/>
-  </inertial>
-  <collision name="lower_camera_collision">
+    </inertial>
+    <collision name="lower_camera_collision">
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
         <box size="0.037 0.033 0.045"/>
       </geometry>
-  </collision>
-  <visual name="lower_camera_visual">
+    </collision>
+    <visual name="lower_camera_visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <box size="0.037 0.033 0.045"/>
       </geometry>
       <material name="red"/>
-  </visual>
+    </visual>
   </link>
-   <joint name="joint_lower_camera_link" type="continuous">
+
+  <joint name="joint_lower_camera_link" type="continuous"><!--AQUI USAM REVOLUTE -->
     <origin rpy="0 0 0" xyz="0 0 0.045"/>
     <child link="lower_camera_link" />
     <parent link="link_chassis"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
-    <joint_properties damping="1.0" friction="1.0" />
-  </joint>-->
-  <!--TODO: plugin link da camara de baixo-->
-  <!--<link name="upper_camera_link">
+    <limit effort="30" velocity="1" lower="-1.57" upper="1.57"/>
+    <dynamics dampling="2" friction="2"/>
+  </joint>
+
+  <gazebo reference="lower_camera_link">
+        <material>Gazebo/Yellow</material>
+        <!--selfCollide>false</selfCollide>
+        <turnGravityOff>true</turnGravityOff-->
+  </gazebo>
+
+  <transmission name="pan_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_lower_camera_link">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="camera_pan_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!--End Lower Camera-->
+
+
+  <!--Upper Camera-->
+  <link name="upper_camera_link">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertial>
+    <inertial>
       <mass value="0.0225"/>
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0 "/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0.000006" iyz="0" izz="0.000005"/>
-  </inertial>
-  <collision name="upper_camera_collision">
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0" />
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <inertia ixx="0.0000058388" ixy="0" ixz="0" iyy="0.0000063638" iyz="0" izz="0.0000046088"/>
+    </inertial>
+    <collision name="upper_camera_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
+        <box size="0.037 0.033 0.045"/>
       </geometry>
-  </collision>
-  <visual name="upper_camera_visual">
-      <origin rpy="0 ${3.14/2} 0" xyz="0 0 0"/>
+    </collision>
+    <visual name="upper_camera_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://alphabot2_world/meshes/camera.stl" />
+        <box size="0.037 0.033 0.045"/>
       </geometry>
       <material name="blue"/>
-  </visual>
+    </visual>
   </link>
 
-   <joint name="joint_upper_camera_link" type="continuous">
-    <origin rpy="0 ${-3.14/2} 0" xyz="0 0 0.045"/>
+  <gazebo reference="upper_camera_link">
+        <material>Gazebo/Yellow</material>
+        <!--selfCollide>true</selfCollide>
+        <turnGravityOff>true</turnGravityOff-->
+  </gazebo>
+
+  <joint name="joint_upper_camera_link" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.045"/> <!--0.045-->
     <child link="upper_camera_link" />
     <parent link="lower_camera_link"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="10000" velocity="1000" lower="-1.57" upper="1.57"/>
-    <joint_properties damping="1.0" friction="1.0" />
-  </joint>-->
+    <limit effort="30" velocity="1" lower="-1.57" upper="1.57"/>
+    <dynamics dampling="2" friction="2"/>
+  </joint>
+
+  <transmission name="tilt_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_upper_camera_link">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="camera_tilt_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!--End Upper Camera-->
+
+
+  <!--For all the transmission tags; links gazebo with ROS-->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/alphabot2</robotNamespace>
+    </plugin>
+  </gazebo>
 
   <!-- camera -->
-  <!--<gazebo reference="upper_camera_link">
+  <gazebo reference="upper_camera_link">
     <sensor name="alphabot2_camera" type="camera" >
       <visualize>1</visualize>
       <always_on>1</always_on>
@@ -141,6 +187,9 @@
         </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>
@@ -160,7 +209,7 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>-->
+  </gazebo>
 
   <joint name="sensor1_joint" type="fixed">
     <axis xyz="0 1 0" />
