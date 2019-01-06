@@ -100,7 +100,7 @@ class AlphaBot2(object):
 			GPIO.output(self.BIN2,GPIO.HIGH)
 			self.PWMB.ChangeDutyCycle(0 - left)
 
-def get_cmd_vel(self, data): #https://github.com/azazdeaz/alphabot2-ros/blob/master/scripts/wheel_driver.py
+	def get_cmd_vel(self, data): #https://github.com/azazdeaz/alphabot2-ros/blob/master/scripts/wheel_driver.py
         x = data.linear.x
         angular = data.angular.z
         # calculate right and left wheels' signal

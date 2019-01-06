@@ -40,10 +40,13 @@ robot = AlphaBot2()
 
 
 def movementCmdCallback(msg): # called by another ROS node
-    print(msg)
-    movType = "forward"
+    lin = msg.data.linear.x
+    ang = msg.data.angular.z
+    print("Linear = "+str(lin)+", Angular = "+str(ang))
+    robot.get_cmd_vel(msg)
+    '''movType = "forward"
     if movType == "forward":
-        robot.forward()
+        robot.linear(lin)
     elif movType == "stop":
         robot.stop()
     elif movType == "backward":
@@ -52,7 +55,7 @@ def movementCmdCallback(msg): # called by another ROS node
         robot.left()
     elif movType == "rotateRight":
         robot.right()
-    # TO DO: handle more data (?)
+    # TO DO: handle more data (?)'''
 
 
 # MAIN
@@ -77,7 +80,7 @@ def main():
     # subscribe movement_listener
     rospy.Subscriber("/cmd_vel", Twist, movementCmdCallback)
 
-    print "starting loop..."
+    print "Alphabot2 is ready to operate!"
 
     rate = rospy.Rate(10)
     while True: #TO DO: is there a ROS::ok equivalent for phyton?
