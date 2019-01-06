@@ -67,7 +67,8 @@ def calculateMovement(sensorsTop, sensorsBottom):
             msg.linear.x = HIGH_LINEAR_SPEED
             msg.angular.z = -0.1
         else:
-            lineNeverFound = False
+            if brightness3 > 50:
+                lineNeverFound = False
             if min_brightness > 50 and abs(edge_deviation) < 50:
                 print("Staying in the line")
                 msg.linear.x = HIGH_LINEAR_SPEED
@@ -84,13 +85,13 @@ def calculateMovement(sensorsTop, sensorsBottom):
                 msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
 
             elif brightness3 > 50: # almost panic
-                print("Hugely! correcting course to the "+str_turn)
+                print("Hugely correcting course to the "+str_turn)
                 msg.linear.x = 0
                 msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
             else: # true panic
-                print("PANICKING while correcting course to the "+str_turn)
-                msg.linear.x = -LOW_LINEAR_SPEED
-                msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
+                print("PANICKING while correcting course. Stopping and turning until line is found!")
+                msg.linear.x = 0
+                msg.angular.z = LOW_ANGULAR_SPEED
 
     movementTopic.publish(msg)
 
