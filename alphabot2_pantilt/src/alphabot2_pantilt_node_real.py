@@ -34,7 +34,7 @@ class pan_tilt_node:
   def __init__(self):
     rospy.init_node('alphabot2_pantilt_node_real', anonymous=True)
 
-    """ Subscribe to alphabot vertical and horizontal camera controller (Angles in degrees)"""
+    """ Subscribe to alphabot2 vertical and horizontal camera controller (Angles in degrees)"""
     self.vertical_sub = rospy.Subscriber("/alphabot2/vertical", Float64, self.vertical_callback)
     self.horizontal_sub = rospy.Subscriber("/alphabot2/horizontal", Float64, self.horizontal_callback)
 

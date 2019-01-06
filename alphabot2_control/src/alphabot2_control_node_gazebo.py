@@ -9,9 +9,9 @@ class control_node:
 
   def __init__(self):
     """ Initialize control node """
-    rospy.init_node('alphabot_control_node_gazebo', anonymous= True)
+    rospy.init_node('alphabot2_control_node_gazebo', anonymous= True)
 
-    """ Subscribe to alphabot_control topic of Twist type"""
+    """ Subscribe to alphabot2/control topic of Twist type"""
     self.sub = rospy.Subscriber('/alphabot2/control', Twist, self.callback)
 
     """ Initialize publisher to Gazebo"""

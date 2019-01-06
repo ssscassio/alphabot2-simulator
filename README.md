@@ -70,20 +70,20 @@ roslaunch alphabot2_pantilt_control alphabot2_pantilt_control_real.launch
 
 Topics:
 
-- `/alphabot2_control`: Used to control the robot movement, `geometry_msgs/Twist` to be publish
+- `/alphabot2/control`: Used to control the robot movement, `geometry_msgs/Twist` to be publish
 - `/alphabot2/vertical`: Used to control **Tilt** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
 - `/alphabot2/horizontal`: Used to control **Pan** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
 - `/raspicam_node/image`: Publishes `sensor_msgs/Image` from the camera module.
 
 ## Testing controls
 
-To control robot movement publish a `geometry_msgs/Twist` to `/alphabot2_control` topic:
+To control robot movement publish a `geometry_msgs/Twist` to `/alphabot2/control` topic:
 
 ```
-rostopic pub /alphabot2_control geometry_msgs/Twist (Press Tab)
+rostopic pub /alphabot2/control geometry_msgs/Twist (Press Tab)
 ```
 
-To control camera movement publish a `std_msgs/Float64` to `/alphabot_horizontal` or `/alphabot_vertical` topics with a angle between -90 and 90 degrees:
+To control camera movement publish a `std_msgs/Float64` to `/alphabot_horizontal` or `/alphabot2/vertical` topics with a angle between -90 and 90 degrees:
 
 **Pan**
 
