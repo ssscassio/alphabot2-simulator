@@ -26,7 +26,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.0065"/>
       <geometry>
-        <cylinder radius="0.055" length="0.045"/>
+        <mesh filename="package://alphabot2_world/meshes/chassis.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
