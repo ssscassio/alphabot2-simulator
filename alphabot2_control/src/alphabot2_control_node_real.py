@@ -70,7 +70,7 @@ class driver:
       GPIO.output(self.IN4, GPIO.HIGH)
       self.PWMB.ChangeDutyCycle(0 - left)
 
-  # get cmd_vel message, and get linear velocity and angular velocity
+  # get alphabot2/control message, and get linear velocity and angular velocity
   def drive(self, data):
     x = data.linear.x
     angular = data.angular.z

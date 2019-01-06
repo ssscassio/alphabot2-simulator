@@ -15,7 +15,7 @@ class control_node:
     self.sub = rospy.Subscriber('/alphabot2_control', Twist, self.callback)
 
     """ Initialize publisher to Gazebo"""
-    self.gazebo_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+    self.gazebo_pub = rospy.Publisher('/alphabot2/control', Twist, queue_size=1)
 
   def callback(self, message_received):
     """ Sending to Gazebo """
