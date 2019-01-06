@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(alphabot2_ros_middleman)
+project(alphabot2_sensors_middleman)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)

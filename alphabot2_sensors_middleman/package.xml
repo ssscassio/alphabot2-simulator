@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>alphabot2_simulation_sensors</name>
+  <name>alphabot2_sensors_middleman</name>
   <version>0.0.0</version>
-  <description>The alphabot2_simulation_sensors package</description>
+  <description>The alphabot2_middleman package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

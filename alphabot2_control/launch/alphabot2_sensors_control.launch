@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node name="alphabot2_sensors_control" pkg="alphabot2_control" type="alphabot2_sensors_control_node.py" output="screen"/>
+</launch>
