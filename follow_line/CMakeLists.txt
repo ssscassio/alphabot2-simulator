@@ -8,13 +8,10 @@ project(follow_line)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cv2
+  cv_bridge
   geometry_msgs
-  math
-  numpy
   rospy
   std_msgs
-  time
 )
 
 ## System dependencies are found with CMake's conventions
@@ -109,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES follow_line
-#  CATKIN_DEPENDS cv2 geometry_msgs math numpy rospy std_msgs time
+#  CATKIN_DEPENDS cv_bridge geometry_msgs rospy std_msgs
 #  DEPENDS system_lib
 )
 
