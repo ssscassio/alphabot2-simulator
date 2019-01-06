@@ -55,7 +55,7 @@ roslaunch alphabot2_pantilt_control alphabot2_pantilt_control_gazebo.launch
 To launch the robot movement created by the sensors node run:
 
 ```
-roslaunch alphabot2_control alphabot2_control.launch
+roslaunch alphabot2_control alphabot2_sensors_control.launch
 ```
 
 ### Real Robot:
@@ -80,8 +80,10 @@ Topics:
 - `/alphabot2_vertical`: Used to control **Tilt** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
 - `/alphabot2_horizontal`: Used to control **Pan** from Pan-Tilt using `std_msgs/Float64` (degree between -90 and 90)
 - `/alphabot2_camera/image_raw`: Publishes `sensor_msgs/Image` from the camera module.
-- `/alphabot2/top_sensors`: Publishes the result of the top sensors to be used by the real robot and the simulated robot.
-- `/alphabot2/bottom_sensors`: Publishes the result of the bottom sensors to be used by the real robot and the simulated robot.
+- `alphabot2_top_sensors_middleman`: Receives info from Gazebo top sensors and retransmits in standardized format to `/alphabot2/top_sensors`.
+- `alphabot2_bottom_sensors_middleman`: Receives info from Gazebo bottom sensors and retransmits in standardized format to `/alphabot2/bottom_sensors`.
+- `/alphabot2/top_sensors`: Receives the result of the top sensors to be used by the real robot and the simulated robot.
+- `/alphabot2/bottom_sensors`: Receives the result of the bottom sensors to be used by the real robot and the simulated robot.
 
 ## Testing controls
 
