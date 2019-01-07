@@ -13,11 +13,11 @@ LOW_LINEAR_SPEED = 0.2
 HIGH_ANGULAR_SPEED = 0.9
 LOW_ANGULAR_SPEED = 0.3
 '''
-HIGH_LINEAR_SPEED = 0.6
-LOW_LINEAR_SPEED = 0.4
+HIGH_LINEAR_SPEED = 0.8
+LOW_LINEAR_SPEED = 0.6
 
-HIGH_ANGULAR_SPEED = 0.9
-LOW_ANGULAR_SPEED = 0.3
+HIGH_ANGULAR_SPEED = 2.1
+LOW_ANGULAR_SPEED = 1.5
 
 
 movementTopic = None
@@ -26,6 +26,8 @@ topSensors = None
 lock = Lock()
 
 lineNeverFound = True
+prev_speed = 0
+prev_z_sign = 0
 
 def sign(x):
     if x < 0: return -1
@@ -35,6 +37,8 @@ def sign(x):
 def calculateMovement(sensorsTop, sensorsBottom):
     global movementTopic
     global lineNeverFound
+    global prev_speed
+    global prev_z_sign
 
     msg = Twist()
     obstacleRight, obstacleLeft = sensorsTop.data
@@ -52,7 +56,7 @@ def calculateMovement(sensorsTop, sensorsBottom):
 
         brightness1, brightness2, brightness3, brightness4, brightness5 = sensorsBottom.data
         print(sensorsBottom.data)
-
+        #'''
         min_brightness = min(brightness1, brightness2, brightness3, brightness4, brightness5)
         max_brightness = max(brightness1, brightness2, brightness3, brightness4, brightness5)
         mid_deviation = brightness2 - brightness4  # >0 means more white on the right side. ranges from aprox [-100, 100]
@@ -66,33 +70,35 @@ def calculateMovement(sensorsTop, sensorsBottom):
             msg.linear.x = HIGH_LINEAR_SPEED
             msg.angular.z = -0.1
         else:
-            if brightness3 > 50:
-                lineNeverFound = False
-            if min_brightness > 50 and abs(edge_deviation) < 50:
+            #if brightness3 > 50:
+            lineNeverFound = False
+            if abs(mid_deviation) < 50 and max(brightness2, brightness4) > 50:
                 print("Staying in the line")
-                msg.linear.x = HIGH_LINEAR_SPEED
+                msg.linear.x = LOW_LINEAR_SPEED
                 msg.angular.z = 0
 
-            elif brightness3 > 50 and abs(edge_deviation) < 50: # needs small adjustement
-                print("Slightly correcting course to the "+str_turn)
-                msg.linear.x = HIGH_LINEAR_SPEED
-                msg.angular.z = z_sign*LOW_ANGULAR_SPEED
-
-            elif brightness3 > 50 and abs(mid_deviation) < 50: # needs adjustement, but no panic
-                print("Really correcting course to the "+str_turn)
+            elif abs(edge_deviation) < 50 and max_brightness > 50: # little hope
+                print("Warning! Correcting course to the "+str_turn)
                 msg.linear.x = LOW_LINEAR_SPEED
                 msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
-
-            elif brightness3 > 50: # almost panic
-                print("Hugely correcting course to the "+str_turn)
-                msg.linear.x = 0
-                msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
             else: # true panic
-                print("PANICKING while correcting course. Stopping and turning until line is found!")
-                msg.linear.x = 0
-                msg.angular.z = LOW_ANGULAR_SPEED
-        #msg.linear.x = HIGH_LINEAR_SPEED
-
+                print("PANICKING while correcting course. Turning until line is found!")
+                z_sign = prev_z_sign
+                msg.linear.x = - LOW_LINEAR_SPEED
+                msg.angular.z = z_sign*LOW_ANGULAR_SPEED
+                #msg.angular.z = z_sign*LOW_ANGULAR_SPEED
+                #msg.linear.x = HIGH_LINEAR_SPEED*1.4
+                #msg.angular.z = LOW_ANGULAR_SPEED
+        #'''
+        #msg.angular.z = LOW_ANGULAR_SPEED
+    s1 = sign(prev_speed)
+    s2 = sign(msg.linear.x)
+    if s1*s2 < 0:
+        msg.linear.x = prev_speed + msg.linear.x
+    else:
+        msg.linear.x = (prev_speed+msg.linear.x)/3
+    prev_speed = msg.linear.x
+    prev_z_sign = z_sign
     movementTopic.publish(msg)
 
 
