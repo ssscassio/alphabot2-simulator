@@ -2,5 +2,5 @@
 <launch>
     <node name="alphabot2_top_sensors_middleman" pkg="alphabot2_sensors_middleman" type="TopSensorsMiddleman.py"/>
     <node name="alphabot2_bottom_sensors_middleman" pkg="alphabot2_sensors_middleman" type="BottomSensorsMiddleman.py"/>
-    <node name="alphabot2_sensors_control" pkg="alphabot2_control" type="alphabot2_sensors_control_node.py" output="screen"/>
+    <node name="alphabot2_sensors_control" pkg="alphabot2_sensors" type="alphabot2_sensors_control_node.py" output="screen"/>
 </launch>

@@ -70,7 +70,7 @@ class driver:
       GPIO.output(self.IN4, GPIO.HIGH)
       self.PWMB.ChangeDutyCycle(0 - left)
 
-  # get cmd_vel message, and get linear velocity and angular velocity
+  # get alphabot2/control message, and get linear velocity and angular velocity
   def drive(self, data):
     x = data.linear.x
     angular = data.angular.z
@@ -83,10 +83,10 @@ class control_node:
 
   def __init__(self):
     """ Initialize control node """
-    rospy.init_node('alphabot_control_node_real', anonymous= True)
+    rospy.init_node('alphabot2_control_node_real', anonymous= True)
 
-    """ Subscribe to alphabot_control topic of Twist type"""
-    self.sub = rospy.Subscriber('/alphabot2_control', Twist, self.callback)
+    """ Subscribe to alphabot2/control topic of Twist type"""
+    self.sub = rospy.Subscriber('/alphabot2/control', Twist, self.callback)
 
     """ Initialize drive of real robot """
     self.real_robot = driver()

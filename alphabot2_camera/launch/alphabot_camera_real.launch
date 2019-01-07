@@ -1,0 +1,6 @@
+<launch>
+  <node name="raspcam_node" pkg="raspcam_node" type="raspcam_node">
+    <param name="enable_raw" value="true" />
+    <remap from="/raspicam_node/image" to="/alphabot2/camera/image_raw"/>
+  </node>
+</launch>
