@@ -5,5 +5,5 @@
     name="alphabot2_pantilt_node_real" 
     ns="/alphabot2" 
     output="screen" 
-    launch-prefix="xterm -e"/>
+    /> <!-- launch-prefix="xterm -e" --> 
 </launch>

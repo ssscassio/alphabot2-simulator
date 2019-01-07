@@ -1,0 +1,30 @@
+<launch>
+  <node 
+    pkg="alphabot2_follow_line" 
+    type="followLine.py" 
+    name="alphabot2_follow_line" 
+    ns="/alphabot2"
+    output="screen" 
+    /> <!-- launch-prefix="xterm -e"  -->
+
+  <!--node 
+    pkg="alphabot2_pantilt" 
+    type="alphabot2_pantilt_node_real.py" 
+    name="alphabot2_pantilt_node_real" 
+    ns="/alphabot2" 
+    output="screen" 
+    launch-prefix="xterm -e"/-->
+
+  <node 
+    pkg="alphabot2_control" 
+    type="alphabot2_control_node_real.py" 
+    name="alphabot2_control_node_real" 
+    ns="/alphabot2"
+    output="screen" 
+    /> <!-- launch-prefix="xterm -e" -->
+
+  <node name="raspicam_node" pkg="raspicam_node" type="raspicam_node">
+    <param name="enable_raw" value="true" />
+    <remap from="/raspicam_node/image" to="/alphabot2/camera/image_raw"/>
+  </node>
+</launch>

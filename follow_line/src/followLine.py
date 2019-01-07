@@ -1,7 +1,6 @@
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Float64
-from geometry_msgs.msg import Twist
 
 import math
 import time
@@ -76,7 +75,7 @@ def line_to_theta_and_rho_error(img):
 
 def main():
         """ Subscribe to image """
-        image_transport::Subscriber sub = rospy.Subscriber('/alphabot2/camera', alphabot2_image, sensorCallback)
+        image_transport::Subscriber sub = rospy.Subscriber('/alphabot2/camera/image_raw', alphabot2_image, sensorCallback)
         
 
         rospy.spin()

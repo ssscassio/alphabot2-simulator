@@ -2,7 +2,11 @@
 
 import rospy
 from std_msgs.msg import Float64
-from utils.PCA9685 import PCA9685
+
+import os
+os.system("/home/pi/Developer/simulation_ws/src/alphabot2_pantilt/src/utils/PCA9685.py")
+
+#from utils import PCA9685
 import math
 import RPi.GPIO as GPIO
 import time
