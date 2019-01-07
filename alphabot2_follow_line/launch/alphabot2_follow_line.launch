@@ -1,7 +1,7 @@
 <launch>
   <node 
     pkg="alphabot2_follow_line" 
-    type="followLine.py" 
+    type="alphabot2_follow_line.py" 
     name="alphabot2_follow_line" 
     ns="/alphabot2"
     output="screen" 

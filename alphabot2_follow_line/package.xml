@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>follow_line</name>
+  <name>alphabot2_follow_line</name>
   <version>0.0.0</version>
-  <description>The follow_line package</description>
+  <description>The alphabot2_follow_line package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

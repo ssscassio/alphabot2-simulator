@@ -2,4 +2,8 @@
   <node pkg="alphabot2_tracking" type="alphabot2_tracking_node" name="alphabot2_tracking_node" ns="/alphabot2" output="screen" > <!-- launch-prefix="xterm -e" -->
     <param name="camera" value="/alphabot2/camera/image_raw" />
   </node>
+  <node name="raspicam_node" pkg="raspicam_node" type="raspicam_node">
+    <param name="enable_raw" value="true" />
+    <remap from="/raspicam_node/image" to="/alphabot2/camera/image_raw"/>
+  </node>
 </launch>

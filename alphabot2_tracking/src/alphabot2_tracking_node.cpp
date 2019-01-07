@@ -77,13 +77,13 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
     {
         cv::Mat img_rgb = cv_bridge::toCvShare(msg, "bgr8")->image;
         
-        //Line detection
-        cv::Mat dst, cdst;
-        Canny(img_rgb, dst, 50, 200, 3); //Edge detector
-        cv::cvtColor(dst, cdst, CV_GRAY2BGR);
+//Line detection
+        //cv::Mat dst, cdst;
+        //Canny(img_rgb, dst, 50, 200, 3); //Edge detector
+        //cv::cvtColor(dst, cdst, CV_GRAY2BGR);
         
-        std::vector<cv::Vec2f> lines;
-        cv::HoughLines(dst, lines, 1, CV_PI/180, 100, 0, 0 ); //Hough Line Transform 
+        //std::vector<cv::Vec2f> lines;
+        //cv::HoughLines(dst, lines, 1, CV_PI/180, 100, 0, 0 ); //Hough Line Transform 
                                                         //(dst binary image; 
                                                         //lines with parameters r, theta
                                                         //resolution of r 1 pixel
@@ -92,22 +92,21 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
                                                         // minLinLength minimum number of points for a line
                                                         //maxLineGap maximum gap between two points to be considered in the same line.
         //Draw the lines
-        for( size_t i = 0; i < lines.size(); i++ )
-        {
-            float rho = lines[i][0], theta = lines[i][1];
-            cv::Point pt1, pt2;
-            double a = cos(theta), b = sin(theta);
-            double x0 = a*rho, y0 = b*rho;
-            pt1.x = cvRound(x0 + 1000*(-b));
-            pt1.y = cvRound(y0 + 1000*(a));
-            pt2.x = cvRound(x0 - 1000*(-b));
-            pt2.y = cvRound(y0 - 1000*(a));
-            cv::line( cdst, pt1, pt2, cv::Scalar(0,0,255), 3, CV_AA);
-        }
+        //for( size_t i = 0; i < lines.size(); i++ )
+        //{
+        //    float rho = lines[i][0], theta = lines[i][1];
+        //    cv::Point pt1, pt2;
+        //    double a = cos(theta), b = sin(theta);
+        //   double x0 = a*rho, y0 = b*rho;
+        //    pt1.x = cvRound(x0 + 1000*(-b));
+        //    pt1.y = cvRound(y0 + 1000*(a));
+        //    pt2.x = cvRound(x0 - 1000*(-b));
+        //    pt2.y = cvRound(y0 - 1000*(a));
+        //    cv::line( cdst, pt1, pt2, cv::Scalar(0,0,255), 3, CV_AA);
+        //}
         
         cv::imshow("rgb", img_rgb);
-        cv::imshow("detected lines", cdst);
-        
+        //cv::imshow("detected lines", cdst);
         ipmDone = true;
         
         uint8_t k = cv::waitKey(1);
