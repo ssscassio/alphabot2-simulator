@@ -57,6 +57,7 @@
   <exec_depend>cv_bridge</exec_depend>
   <exec_depend>image_geometry</exec_depend>
   <exec_depend>python-smbus</exec_depend>
+  <depend>geometry_msgs</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

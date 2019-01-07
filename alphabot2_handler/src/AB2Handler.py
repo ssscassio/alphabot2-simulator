@@ -28,7 +28,7 @@ lightSensors = None # below board # higher values -> darker lighting
 proximitySensors = None # front of board
 
 def getSensorsInfos():
-        light = lightSensors.AnalogRead() #TODO use eadCalibrated()?
+        light = lightSensors.AnalogRead() #TODO use readCalibrated()?
         proximity = proximitySensors.getStatus()
         #TO DO: edit return statement to publish somewhere
         return light, proximity
@@ -40,9 +40,10 @@ robot = AlphaBot2()
 
 
 def movementCmdCallback(msg): # called by another ROS node
-    lin = msg.data.linear.x
-    ang = msg.data.angular.z
-    print("Linear = "+str(lin)+", Angular = "+str(ang))
+    print(msg)
+    #lin = msg.data.linear.x
+    #ang = msg.data.angular.z
+    #print("Linear = "+str(lin)+", Angular = "+str(ang))
     robot.get_cmd_vel(msg)
     '''movType = "forward"
     if movType == "forward":
@@ -66,6 +67,9 @@ def main():
     global proximitySensors
     lightSensors = TRSensor()
     proximitySensors = IRSensor
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(7,GPIO.IN,GPIO.PUD_UP)
 
     #lightSensors.calibrate()
     proximitySensors.setup(robot)
@@ -83,12 +87,17 @@ def main():
     print "Alphabot2 is ready to operate!"
 
     rate = rospy.Rate(10)
-    while True: #TO DO: is there a ROS::ok equivalent for phyton?
+    while True:
+        if GPIO.input(7) == 0:
+            break
+        
         light, proximity = getSensorsInfos()
 
         topSensorsPub.publish(Int32MultiArray(data=proximity))
         bottomSensorsPub.publish(Int32MultiArray(data=light))
         rate.sleep()
+
+    robot.stop()
 
 if __name__ == "__main__":
     try:

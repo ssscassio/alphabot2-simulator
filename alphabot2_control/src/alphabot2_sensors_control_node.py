@@ -13,11 +13,11 @@ LOW_LINEAR_SPEED = 0.2
 HIGH_ANGULAR_SPEED = 0.9
 LOW_ANGULAR_SPEED = 0.3
 '''
-HIGH_LINEAR_SPEED = 0.4
-LOW_LINEAR_SPEED = 0.1
+HIGH_LINEAR_SPEED = 0.6
+LOW_LINEAR_SPEED = 0.4
 
-HIGH_ANGULAR_SPEED = 0.6
-LOW_ANGULAR_SPEED = 0.1
+HIGH_ANGULAR_SPEED = 0.9
+LOW_ANGULAR_SPEED = 0.3
 
 
 movementTopic = None
@@ -38,16 +38,15 @@ def calculateMovement(sensorsTop, sensorsBottom):
 
     msg = Twist()
     obstacleRight, obstacleLeft = sensorsTop.data
+    print(sensorsTop.data)
     if obstacleLeft: #TODO should this also consider obstacleRight and obstacleLeft simultaneously?
         print "Obstacle found on the left. Turning right"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = - HIGH_ANGULAR_SPEED
-        return
     elif obstacleRight:
         print "Obstacle found on the right. Turning left"
         msg.linear.x = LOW_LINEAR_SPEED
         msg.angular.z = HIGH_ANGULAR_SPEED
-        return
     else:
         # print "Everything fine"
 
@@ -92,6 +91,7 @@ def calculateMovement(sensorsTop, sensorsBottom):
                 print("PANICKING while correcting course. Stopping and turning until line is found!")
                 msg.linear.x = 0
                 msg.angular.z = LOW_ANGULAR_SPEED
+        #msg.linear.x = HIGH_LINEAR_SPEED
 
     movementTopic.publish(msg)
 

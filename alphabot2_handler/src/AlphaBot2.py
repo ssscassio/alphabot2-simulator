@@ -27,9 +27,6 @@ class AlphaBot2(object):
 		self.PWMB.start(self.PB)
 		self.stop()
 
-	# ROS commands
-    # rospy.init_node('alphabot2', anonymous=True)
-    # rospy.Subscriber('/cmd_vel', Twist, self.get_cmd_vel)
 
 	def forward(self):
 		self.PWMA.ChangeDutyCycle(self.PA)
@@ -84,40 +81,40 @@ class AlphaBot2(object):
 
 	def setMotor(self, left, right):
 		if((right >= 0) and (right <= 100)):
-			GPIO.output(self.AIN1,GPIO.HIGH)
-			GPIO.output(self.AIN2,GPIO.LOW)
-			self.PWMA.ChangeDutyCycle(right)
-		elif((right < 0) and (right >= -100)):
-			GPIO.output(self.AIN1,GPIO.LOW)
-			GPIO.output(self.AIN2,GPIO.HIGH)
-			self.PWMA.ChangeDutyCycle(0 - right)
-		if((left >= 0) and (left <= 100)):
-			GPIO.output(self.BIN1,GPIO.HIGH)
-			GPIO.output(self.BIN2,GPIO.LOW)
-			self.PWMB.ChangeDutyCycle(left)
-		elif((left < 0) and (left >= -100)):
 			GPIO.output(self.BIN1,GPIO.LOW)
 			GPIO.output(self.BIN2,GPIO.HIGH)
-			self.PWMB.ChangeDutyCycle(0 - left)
+			self.PWMB.ChangeDutyCycle(right)
+		elif((right < 0) and (right >= -100)):
+			GPIO.output(self.BIN1,GPIO.HIGH)
+			GPIO.output(self.BIN2,GPIO.LOW)
+			self.PWMB.ChangeDutyCycle(0 - right)
+		if((left >= 0) and (left <= 100)):
+			GPIO.output(self.AIN1,GPIO.LOW)
+			GPIO.output(self.AIN2,GPIO.HIGH)
+			self.PWMA.ChangeDutyCycle(left)
+		elif((left < 0) and (left >= -100)):
+			GPIO.output(self.AIN1,GPIO.HIGH)
+			GPIO.output(self.AIN2,GPIO.LOW)
+			self.PWMA.ChangeDutyCycle(0 - left)
 
 	def get_cmd_vel(self, data): #https://github.com/azazdeaz/alphabot2-ros/blob/master/scripts/wheel_driver.py
-        x = data.linear.x
-        angular = data.angular.z
-        # calculate right and left wheels' signal
-        right = int((x + angular) * 50)
-        left = int((x - angular) * 50)
-        self.set_motor(left, right)
+                x = data.linear.x
+                angular = data.angular.z
+                # calculate right and left wheels' signal
+                right = int((x + angular) * 30)
+                left = int((x - angular) * 30)
+                self.setMotor(left, right)
 
 if __name__=='__main__':
 
 	Ab = AlphaBot2()
-	Ab.forward()
+	Ab.stop()
 	#rospy.spin()
-	try:
-		while True:
-			time.sleep(1)
-	except KeyboardInterrupt:
-		GPIO.cleanup()
+	#try:
+		#while True:
+			#time.sleep(1)
+	#except KeyboardInterrupt:
+	GPIO.cleanup()
 
 	# try:
         # Ab = AlphaBot2()

@@ -17,8 +17,8 @@ def setup(robot):
 	GPIO.setup(DL,GPIO.IN,GPIO.PUD_UP)
 
 def getStatus():
-	DR_status = GPIO.input(DR)
-	DL_status = GPIO.input(DL)
+	DR_status = (GPIO.input(DR) + 1) % 2
+	DL_status = (GPIO.input(DL) + 1) % 2
 	return DL_status, DR_status
 
 def obstacleAvoidance():

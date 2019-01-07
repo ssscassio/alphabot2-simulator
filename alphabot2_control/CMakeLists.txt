@@ -10,7 +10,7 @@ project(alphabot2_control)
 find_package(catkin REQUIRED COMPONENTS
   rospy
 #  gazebo_msgs
-#  geometry_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
