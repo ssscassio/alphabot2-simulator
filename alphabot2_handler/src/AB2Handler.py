@@ -88,14 +88,20 @@ def main():
 
     rate = rospy.Rate(10)
     while True:
-        if GPIO.input(7) == 0:
-            break
-        
-        light, proximity = getSensorsInfos()
+        while True:
+            light, proximity = getSensorsInfos()
+            topSensorsPub.publish(Int32MultiArray(data=proximity))
+            bottomSensorsPub.publish(Int32MultiArray(data=light))
+            rate.sleep()
+            if GPIO.input(7) == 0:
+                break
 
-        topSensorsPub.publish(Int32MultiArray(data=proximity))
-        bottomSensorsPub.publish(Int32MultiArray(data=light))
-        rate.sleep()
+        robot.stop()
+        time.sleep(2)
+        while GPIO.input(7) != 0:
+            time.sleep(0.1)
+        time.sleep(1)
+                
 
     robot.stop()
 

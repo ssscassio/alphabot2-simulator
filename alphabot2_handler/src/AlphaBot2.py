@@ -101,8 +101,8 @@ class AlphaBot2(object):
                 x = data.linear.x
                 angular = data.angular.z
                 # calculate right and left wheels' signal
-                right = int((x + angular) * 30)
-                left = int((x - angular) * 30)
+                right = int((x + angular*0.4) * 15)
+                left = int((x - angular*0.4) * 15)
                 self.setMotor(left, right)
 
 if __name__=='__main__':
