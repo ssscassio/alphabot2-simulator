@@ -82,7 +82,7 @@ def calculateMovement(sensorsTop, sensorsBottom):
                 msg.linear.x = LOW_LINEAR_SPEED
                 msg.angular.z = z_sign*HIGH_ANGULAR_SPEED
             else: # true panic
-                print("PANICKING while correcting course. Turning until line is found!")
+                print("PANICKING while correcting course!")
                 z_sign = prev_z_sign
                 msg.linear.x = - LOW_LINEAR_SPEED
                 msg.angular.z = z_sign*LOW_ANGULAR_SPEED
@@ -91,6 +91,7 @@ def calculateMovement(sensorsTop, sensorsBottom):
                 #msg.angular.z = LOW_ANGULAR_SPEED
         #'''
         #msg.angular.z = LOW_ANGULAR_SPEED
+        prev_z_sign = z_sign
     s1 = sign(prev_speed)
     s2 = sign(msg.linear.x)
     if s1*s2 < 0:
@@ -98,7 +99,6 @@ def calculateMovement(sensorsTop, sensorsBottom):
     else:
         msg.linear.x = (prev_speed+msg.linear.x)/3
     prev_speed = msg.linear.x
-    prev_z_sign = z_sign
     movementTopic.publish(msg)
 
 

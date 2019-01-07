@@ -28,7 +28,7 @@ lightSensors = None # below board # higher values -> darker lighting
 proximitySensors = None # front of board
 
 def getSensorsInfos():
-        light = lightSensors.AnalogRead() #TODO use readCalibrated()?
+        light = list(reversed(lightSensors.readCalibrated()))
         proximity = proximitySensors.getStatus()
         #TO DO: edit return statement to publish somewhere
         return light, proximity
@@ -71,7 +71,7 @@ def main():
     GPIO.setwarnings(False)
     GPIO.setup(7,GPIO.IN,GPIO.PUD_UP)
 
-    #lightSensors.calibrate()
+    lightSensors.calibrate()
     proximitySensors.setup(robot)
 
     # make broadcasters
