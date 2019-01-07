@@ -143,7 +143,7 @@ def main():
 
     rospy.init_node('alphabot2_sensors_control')
 
-    movementTopic = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+    movementTopic = rospy.Publisher('/alphabot2/control', Twist, queue_size=1)
 
     rospy.Subscriber('/alphabot2/top_sensors', Int32MultiArray, callbackTop)
     rospy.Subscriber('/alphabot2/bottom_sensors', Int32MultiArray, callbackBottom)

@@ -82,7 +82,7 @@ def main():
     rospy.init_node('alphabot2_handler', anonymous=True)
 
     # subscribe movement_listener
-    rospy.Subscriber("/cmd_vel", Twist, movementCmdCallback)
+    rospy.Subscriber("/alphabot2/control", Twist, movementCmdCallback)
 
     print "Alphabot2 is ready to operate!"
 
