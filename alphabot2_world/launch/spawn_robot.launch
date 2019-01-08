@@ -2,8 +2,8 @@
 <launch>
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find alphabot2_world)/robots/alphabot2.xacro'" />
  
-    <arg name="x" default="0"/>
-    <arg name="y" default="0"/>
+    <arg name="x" default="0"/>    <!-- -0.035 for track1 -->
+    <arg name="y" default="0"/>    <!-- 0.4 for track1, 0.226 for track2 -->
     <arg name="z" default="0.1"/>
  
     <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
