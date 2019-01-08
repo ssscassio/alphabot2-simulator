@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node name="alphabot2_handler" pkg="alphabot2_handler" type="AB2Handler.py" output="screen"/>
+</launch>
