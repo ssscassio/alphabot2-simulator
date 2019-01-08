@@ -50,8 +50,8 @@ cv::Mat camera_dist_coef = (cv::Mat_<double>(1,4) << -0.275678598507515 , 0.0451
                                  0.004883645512607 , 0.001092737340199);
 
 
-ros::Publisher dist_angle_pub;
-ros::Publisher crossWalk_pub;
+//ros::Publisher dist_angle_pub;
+//ros::Publisher crossWalk_pub;
 
 ///--------------------------------------------------------------------------------------------------
 /*void imageMergeAndTrack()
@@ -75,7 +75,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
     try
     {
-        cv::Mat img_rgb = cv_bridge::toCvShare(msg, "bgr8")->image;
+        //cv::Mat img_rgb = cv_bridge::toCvShare(msg, "bgr8")->image;
         
 //Line detection
         //cv::Mat dst, cdst;
@@ -105,11 +105,11 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
         //    cv::line( cdst, pt1, pt2, cv::Scalar(0,0,255), 3, CV_AA);
         //}
         
-        cv::imshow("rgb", img_rgb);
+        //cv::imshow("rgb", img_rgb);
         //cv::imshow("detected lines", cdst);
         ipmDone = true;
         
-        uint8_t k = cv::waitKey(1);
+        //uint8_t k = cv::waitKey(1);
 
     }
     catch (cv_bridge::Exception& e)
@@ -134,7 +134,7 @@ int main(int argc, char** argv)
     /// init variables
     ros::init(argc, argv, "alphabot2_tracking_node");
     ros::NodeHandle nh("~");
-    cv::namedWindow("rgb");
+    //cv::namedWindow("rgb");
 
     std::string cameraTopic;
 
@@ -144,12 +144,12 @@ int main(int argc, char** argv)
     }
     std::cout << "Parameter camera: " << cameraTopic <<  std::endl;
 
-    cv::startWindowThread();
+    //cv::startWindowThread();
     image_transport::ImageTransport it(nh);
     image_transport::Subscriber sub = it.subscribe(cameraTopic, 1, imageCallback);
 
-    dist_angle_pub = nh.advertise<std_msgs::Float64MultiArray>("/alphabot2_dist_angle", 1);
-    crossWalk_pub = nh.advertise<std_msgs::Bool>("/crossWalk", 1);
+    //dist_angle_pub = nh.advertise<std_msgs::Float64MultiArray>("/alphabot2_dist_angle", 1);
+    //crossWalk_pub = nh.advertise<std_msgs::Bool>("/crossWalk", 1);
 
         ros::Rate r(100);
         while(ros::ok())
@@ -158,5 +158,5 @@ int main(int argc, char** argv)
             r.sleep();
         }
         
-    cv::destroyWindow("view");
+    //cv::destroyWindow("view");
 }
