@@ -1,4 +1,0 @@
-start = end
-end += 3
-data = _get_struct_3B().unpack(str[start:end])
-data = map(bool, data)

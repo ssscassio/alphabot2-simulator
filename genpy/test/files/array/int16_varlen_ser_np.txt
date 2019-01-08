@@ -1,4 +1,0 @@
-length = len(data)
-buff.write(_struct_I.pack(length))
-pattern = '<%sh'%length
-buff.write(data.tostring())

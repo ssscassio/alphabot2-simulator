@@ -1,3 +1,0 @@
-start = end
-end += 20
-data = _get_struct_10h().unpack(str[start:end])
