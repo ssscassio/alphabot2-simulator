@@ -123,5 +123,5 @@ rostopic echo /alphabot2/bottom_sensors
 
 ## Papers related
 
-- [**Sensors Paper**](https://github.com/ssscassio/alphabot2-simulator/blob/master/Report/Line_Following_and_Obstacle_Avoidance_behaviours_for_AlphaBot2_RPi___real_and_simulated.pdf) 
-- **Camera Paper:**
+- [**Sensors Paper**](https://github.com/ssscassio/alphabot2-simulator/blob/master/Report/Line_Following_and_Obstacle_Avoidance_behaviours_for_AlphaBot2_RPi___real_and_simulated.pdf)
+- [**Camera Paper**](https://github.com/ssscassio/alphabot2-simulator/blob/master/Report/Development_of_AlphaBot2_Gazebo_simulator_for_RPi_camera.pdf)
