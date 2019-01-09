@@ -163,3 +163,12 @@ rostopic echo /alphabot2/bottom_sensors
 
 - [**Sensors Paper**](https://github.com/ssscassio/alphabot2-simulator/blob/master/Report/Line_Following_and_Obstacle_Avoidance_behaviours_for_AlphaBot2_RPi___real_and_simulated.pdf)
 - [**Camera Paper**](https://github.com/ssscassio/alphabot2-simulator/blob/master/Report/Development_of_AlphaBot2_Gazebo_simulator_for_RPi_camera.pdf)
+
+
+## Group G:
+
+* Ana Sofia Simões Correia Rafael, **up201405377**
+* Cássio Silva de Sá Santos, **up201802025**
+* Diogo Serra Duque, **up201406274**
+* Sara Filipa Couto Fernandes, **up201405955**
+
