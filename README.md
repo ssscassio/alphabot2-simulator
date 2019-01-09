@@ -12,6 +12,9 @@ Perform the full installation for the ROS Kinetic that comes with Gazebo 7.0
 
 - _To real robot: Install [Raspcam_node](https://github.com/UbiquityRobotics/raspicam_node) following [the tutorial](https://github.com/UbiquityRobotics/raspicam_node#installation)_.
 
+## Directory Organization
+In the root of the repository, every folder represents a ROS package (except for _pictures_ and _Report_, used to hold images for this _Readme_ and source files for the report, respectively). Inside each package folder, we have the usual _CMakeLists.txt_ and _package.xml_, along with a _launch/_ folder (if there are launch files in the package) and a _src/_ folder (if there is any code in the package). In some special cases (such as _alphabot2_world_ and _alphabot2_pantilt_), packages may have other folders whose names will be self-explanatory for ease of use.
+
 ## Building
 
 Clone this repository into the src folder inside the catkin workspace and compile it.
