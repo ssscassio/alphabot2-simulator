@@ -97,10 +97,10 @@ roslaunch alphabot2_control alphabot2_sensors_control.launch
 ![Rosgraph for the simulation world](pictures/arch-gazebo.png)
 
 <p align="center"> 
-<img src="pictures/arch-real.png" align="left" height=365 alt="Rosgraph for real alphabot">
-<img src="pictures/arch.png" align="right" height=365 alt="Rosgraph for sensors and control using sensors">
+<img src="pictures/arch-real.png" align="left" width=365 alt="Rosgraph for real alphabot">
+<img src="pictures/arch.png" align="right" width=365 alt="Rosgraph for sensors and control using sensors">
 </p>
-<br><br>
+<br><br><br><br><br><br><br>
 
 ### Description of ROS nodes
 
