@@ -172,3 +172,4 @@ rostopic echo /alphabot2/bottom_sensors
 * Diogo Serra Duque, **up201406274**
 * Sara Filipa Couto Fernandes, **up201405955**
 
+&copy; **FEUP**
